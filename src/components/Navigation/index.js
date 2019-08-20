@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import * as ROUTES from "../../constants/routes";
 
+import { AuthUserContext } from "../Session";
 import SignOutButton from "../SignOut";
 
-const Navigation = ({ authUser }) => {
-  return authUser ? <NavigationAuth /> : <NavigationNonAuth />;
-};
+const Navigation = () => (
+  <AuthUserContext.Consumer>
+    {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+  </AuthUserContext.Consumer>
+);
 
 const NavigationAuth = () => (
   <Menu inverted fixed="top">

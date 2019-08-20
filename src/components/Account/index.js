@@ -1,14 +1,23 @@
 import React from "react";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Divider } from "semantic-ui-react";
 
+import { AuthUserContext, withAuthorization } from "../Session";
 import PasswordChangeSection from "../PasswordChange";
+
 const AccountPage = () => (
-  <Container className="body-container">
-    <Header as="h1" textAlign="center">
-      My Account
-    </Header>
-    <PasswordChangeSection />
-  </Container>
+  <AuthUserContext.Consumer>
+    {authUser => (
+      <Container className="body-container">
+        <Header as="h1" textAlign="center" style={{ marginBottom: "25px" }}>
+          My Account
+          <Header.Subheader>{authUser.email}</Header.Subheader>
+        </Header>
+        <PasswordChangeSection />
+        <Divider />
+      </Container>
+    )}
+  </AuthUserContext.Consumer>
 );
 
-export default AccountPage;
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(AccountPage);
