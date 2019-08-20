@@ -1,46 +1,39 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { compose } from "recompose";
+import { Link } from "react-router-dom";
 import { Container, Form, Header, Button } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 import Msg from "../Message";
-import { SignUpLink } from "../SignUp";
-import { PasswordForgetLink } from "../PasswordForget";
 
-const SignInPage = () => (
+const PasswordForgetPage = () => (
   <Container className="body-container">
     <Header as="h1" textAlign="center">
-      Sign In
+      Forgot Password?
     </Header>
-    <SignInForm />
-    <PasswordForgetLink />
-    <SignUpLink />
+    <PasswordForgetForm />
   </Container>
 );
 
 const INITIAL_STATE = {
   email: "",
-  password: "",
-  error: ""
+  error: null
 };
 
-class SignInFormBase extends Component {
+class PasswordForgetFormBase extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
 
   onSubmit = () => {
-    const { email, password } = this.state;
+    const { email } = this.state;
 
     this.props.firebase
-      .doSignInWithEmailAndPassword(email, password)
+      .doPasswordReset(email)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
         this.setState({ error });
@@ -52,43 +45,40 @@ class SignInFormBase extends Component {
   };
 
   render() {
-    const { email, password, error } = this.state;
-    const isInvalid = password === "" || email === "";
-
+    const { email, error } = this.state;
+    const isInvalid = email === "";
     return (
       <Container>
         <Form>
           <Form.Input
             name="email"
-            value={email}
+            value={this.state.email}
             onChange={this.onChange}
             type="text"
             placeholder="Email Address"
-          />
-          <Form.Input
-            name="password"
-            value={password}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
           />
           <Button
             className="button-theme"
             disabled={isInvalid}
             onClick={this.onSubmit}
           >
-            Login In
+            Reset My Password
           </Button>
-          {error && <Msg content={error} error={true} />}
+          {error && <Msg content={error.message} />}
         </Form>
       </Container>
     );
   }
 }
 
-const SignInForm = compose(
-  withRouter,
-  withFirebase
-)(SignInFormBase);
-export default SignInPage;
-export { SignInForm };
+const PasswordForgetLink = () => (
+  <Container style={{ marginTop: "35px" }}>
+    <p>
+      Forgot Password? <Link to={ROUTES.PASSWORD_FORGET}>Click Here!</Link>
+    </p>
+  </Container>
+);
+
+export default PasswordForgetPage;
+const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
+export { PasswordForgetForm, PasswordForgetLink };
