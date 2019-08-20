@@ -24,4 +24,3 @@ const Navigation = () => (
 );
 
 export default Navigation;
-å;
