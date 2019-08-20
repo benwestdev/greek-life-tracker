@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import { Container, Form, Header, Button } from "semantic-ui-react";
+import { Container, Form, Header, Button, Checkbox } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 
 import Msg from "../Message";
 
@@ -22,6 +23,7 @@ const INITIAL_STATE = {
   email: "",
   passwordOne: "",
   passwordTwo: "",
+  type: "student",
   error: null
 };
 
@@ -33,14 +35,21 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state;
+    const { username, email, passwordOne, type } = this.state;
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
+        const roles = {};
+        if (type === "student") {
+          roles[ROLES.STUDENT] = ROLES.STUDENT;
+        } else if (type === "faculty") {
+          roles[ROLES.VIEWER] = ROLES.VIEWER;
+        }
         return this.props.firebase.user(authUser.user.uid).set({
           username,
-          email
+          email,
+          roles
         });
       })
       .then(() => {
@@ -57,8 +66,17 @@ class SignUpFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleChange = (e, { value }) => this.setState({ type: value });
+
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      type,
+      error
+    } = this.state;
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
@@ -96,6 +114,26 @@ class SignUpFormBase extends Component {
             type="password"
             placeholder="Confirm Password"
           />
+          <Form.Field>
+            <Checkbox
+              radio
+              label="Are you a student?"
+              name="checkboxRadioGroup"
+              value="student"
+              checked={type === "student"}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
+          <Form.Field>
+            <Checkbox
+              radio
+              label="Are you a faculty member?"
+              name="checkboxRadioGroup"
+              value="faculty"
+              checked={type === "faculty"}
+              onChange={this.handleChange}
+            />
+          </Form.Field>
           <Button
             className="button-theme"
             onClick={this.onSubmit}
