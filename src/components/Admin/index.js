@@ -9,6 +9,9 @@ import {
 } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
+import { withAuthorization } from "../Session";
+import * as ROLES from "../../constants/roles";
+import { compose } from "recompose";
 
 class AdminPage extends Component {
   constructor(props) {
@@ -93,4 +96,8 @@ const UserList = ({ users }) => (
   </Table>
 );
 
-export default withFirebase(AdminPage);
+const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN];
+export default compose(
+  withAuthorization(condition),
+  withFirebase
+)(AdminPage);
