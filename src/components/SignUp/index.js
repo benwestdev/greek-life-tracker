@@ -103,7 +103,7 @@ class SignUpFormBase extends Component {
           >
             Create Account
           </Button>
-          {error && <Msg error={true} timed={true} content={error} />}
+          {error && <Msg error={true} timed={true} content={error.message} />}
         </Form>
       </Container>
     );

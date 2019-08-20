@@ -79,7 +79,7 @@ class SignInFormBase extends Component {
           >
             Login In
           </Button>
-          {error && <Msg content={error} error={true} />}
+          {error && <Msg content={error.message} error={true} />}
         </Form>
       </Container>
     );
