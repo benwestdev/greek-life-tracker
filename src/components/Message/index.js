@@ -17,7 +17,7 @@ export default class Msg extends Component {
     if (this.props.timed) {
       setTimeout(() => {
         this.setState({ visible: false });
-      }, 3500);
+      }, 5000);
     }
   }
 
