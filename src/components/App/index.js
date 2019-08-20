@@ -10,8 +10,9 @@ import HomePage from "../Home";
 import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
 import PasswordForgetPage from "../PasswordForget";
+import AccountPage from "../Account";
+
 // import LandingPage from "../Landing";
-// import AccountPage from "../Account";
 // import AdminPage from "../Admin";
 
 const App = () => (
@@ -24,8 +25,8 @@ const App = () => (
     <Route path={ROUTES.SIGN_IN} component={SignInPage} />
     <Route path={ROUTES.HOME} component={HomePage} />
     <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-    {/*<Route path={ROUTES.ACCOUNT} component={AccountPage} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
+    <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+    {/*    <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
   </Router>
 );
 export default withAuthentication(App);
