@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
-import { Container, Form, Header, Button } from "semantic-ui-react";
+import { Container, Form, Header, Button, Divider } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
 
 import Msg from "../Message";
+import SignInGoogleButton from "./signInGoogleButton";
+import SignInFacebookButton from "./signInFacebookButton";
 import { SignUpLink } from "../SignUp";
 import { PasswordForgetLink } from "../PasswordForget";
 
@@ -16,6 +18,9 @@ const SignInPage = () => (
       Sign In
     </Header>
     <SignInForm />
+    <Divider />
+    <SignInGoogleButton />
+    <SignInFacebookButton />
     <PasswordForgetLink />
     <SignUpLink />
   </Container>
