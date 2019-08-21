@@ -27,14 +27,20 @@ const EventItem = ({ event, userId, onAttend }) => (
       <Card.Description>
         <EventDetailsView event={event} />
       </Card.Description>
-
-      <Button
-        style={{ margin: "7px" }}
-        className="button-theme shorter"
-        onClick={() => onAttend(event, userId)}
-      >
-        Attended
-      </Button>
+      {event.attendees &&
+      event.attendees.filter(att => att[userId] && att[userId]) ? (
+        <Button style={{ margin: "7px" }} className="button-theme shorter">
+          You attended
+        </Button>
+      ) : (
+        <Button
+          style={{ margin: "7px" }}
+          className="button-theme shorter"
+          onClick={() => onAttend(event, userId)}
+        >
+          Mark as Attended
+        </Button>
+      )}
     </Card.Content>
   </Card>
 );
@@ -62,7 +68,7 @@ const EventDetailsView = ({ event }) => {
         </List.Item>
         <List.Item>
           <List.Icon name="pin" />
-          <List.Content>{event.address || "No address set"}</List.Content>
+          <List.Content>{event.location || "No location set"}</List.Content>
         </List.Item>
         <List.Item>
           <List.Icon name="percent" />
