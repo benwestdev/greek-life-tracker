@@ -12,6 +12,7 @@ import { withFirebase } from "../Firebase";
 import { withAuthorization } from "../Session";
 import * as ROLES from "../../constants/roles";
 import { compose } from "recompose";
+import Events from "./events";
 
 class AdminPage extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class AdminPage extends Component {
           </Dimmer>
         )}
         <UserList users={users} />
+        <Events />
       </Container>
     );
   }
