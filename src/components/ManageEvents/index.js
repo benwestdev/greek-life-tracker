@@ -40,6 +40,11 @@ class ManageEventsPage extends Component {
     });
   }
 
+  onDelete = uid => {
+    console.log("deleting: ", uid);
+    this.props.firebase.event(uid).remove();
+  };
+
   componentWillUnmount() {
     this.props.firebase.events().off();
   }
@@ -62,7 +67,9 @@ class ManageEventsPage extends Component {
           </Dimmer>
         )}
         {events.length > 0 ? (
-          <EventList events={events} />
+          <Container>
+            <EventList events={events} onDelete={this.onDelete} />
+          </Container>
         ) : (
           <Container textAlign="center" style={{ marginTop: "75px" }}>
             <p style={{ fontSize: "1.5em" }}>
