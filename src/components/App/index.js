@@ -14,6 +14,8 @@ import AccountPage from "../Account";
 import AdminPage from "../Admin";
 import ManageUsers from "../ManageUsers";
 import ManageEvents from "../ManageEvents";
+import CreateEvent from "../ManageEvents/createEvent";
+
 // import LandingPage from "../Landing";
 
 const App = () => (
@@ -29,7 +31,8 @@ const App = () => (
     <Route path={ROUTES.ACCOUNT} component={AccountPage} />
     <Route path={ROUTES.ADMIN} component={AdminPage} />
     <Route path={ROUTES.MANAGE_USERS} component={ManageUsers} />
-    <Route path={ROUTES.MANAGE_EVENTS} component={ManageEvents} />
+    <Route exact path={ROUTES.MANAGE_EVENTS} component={ManageEvents} />
+    <Route exact path={ROUTES.CREATE_EVENT} component={CreateEvent} />
   </Router>
 );
 export default withAuthentication(App);
