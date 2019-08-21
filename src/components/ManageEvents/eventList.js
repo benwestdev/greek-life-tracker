@@ -77,3 +77,4 @@ const EventDetailsView = ({ event }) => {
 };
 
 export default EventList;
+export { EventDetailsView };
