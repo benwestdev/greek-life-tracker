@@ -42,7 +42,7 @@ const INITIAL_STATE = {
   date: "",
   startTime: "",
   endTime: "",
-  address: ""
+  location: ""
 };
 
 class CreateEventBase extends Component {
@@ -69,7 +69,7 @@ class CreateEventBase extends Component {
       date,
       startTime,
       endTime,
-      address
+      location
     } = this.state;
     this.props.firebase.events().push({
       name,
@@ -78,7 +78,7 @@ class CreateEventBase extends Component {
       date,
       startTime,
       endTime,
-      address
+      location
     });
     this.setState({ ...INITIAL_STATE });
   };
@@ -91,7 +91,7 @@ class CreateEventBase extends Component {
       date,
       startTime,
       endTime,
-      address
+      location
     } = this.state;
 
     const isDisabled =
@@ -179,9 +179,9 @@ class CreateEventBase extends Component {
           </Form.Field>
           <Form.Field>
             <TextArea
-              name="address"
-              placeholder="Event Address"
-              value={address}
+              name="location"
+              placeholder="Event Location"
+              value={location}
               onChange={this.handleInputChange}
             />
           </Form.Field>

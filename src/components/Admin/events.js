@@ -114,7 +114,7 @@ const EventDetailsView = ({ event }) => (
       </List.Item>
       <List.Item>
         <List.Icon name="pin" />
-        <List.Content>{event.address}</List.Content>
+        <List.Content>{event.location}</List.Content>
       </List.Item>
       <List.Item>
         <List.Icon name="percent" />
