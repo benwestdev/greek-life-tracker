@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 import { DateInput, TimeInput } from "semantic-ui-calendar-react";
 
-import { AuthUserContext, withAuthorization } from "../Session";
+import { withAuthorization } from "../Session";
 import * as ROUTES from "../../constants/routes";
 import * as ROLES from "../../constants/roles";
 import { compose } from "recompose";
