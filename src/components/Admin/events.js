@@ -9,18 +9,7 @@ import {
   Loader
 } from "semantic-ui-react";
 
-import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
-import * as ROLES from "../../constants/routes";
-
-const EventPage = () => (
-  <Container className="body-container">
-    <Header as="h1" textAlign="center">
-      Manage Events
-    </Header>
-    <Events />
-  </Container>
-);
 
 class EventListBase extends Component {
   constructor(props) {
@@ -72,7 +61,7 @@ const EventList = ({ events }) => (
       events.map(event => <EventItem key={event.uid} event={event} />)
     ) : (
       <Container textAlign="center">
-        <p>No Events Setup</p>
+        <p>No events setup yet, start creating some</p>
       </Container>
     )}
   </Card.Group>
@@ -136,4 +125,4 @@ const EventDetailsView = ({ event }) => (
 );
 
 const Events = withFirebase(EventListBase);
-export default EventPage;
+export default Events;
