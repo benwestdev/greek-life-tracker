@@ -16,15 +16,13 @@ import ManageUsers from "../ManageUsers";
 import ManageEvents from "../ManageEvents";
 import CreateEvent from "../ManageEvents/createEvent";
 import ViewEvent from "../ManageEvents/viewEvent";
-
-// import LandingPage from "../Landing";
+import EventsPage from "../Events";
 
 const App = () => (
   <Router>
     <div>
       <Navigation />
     </div>
-    {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
     <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
     <Route path={ROUTES.SIGN_IN} component={SignInPage} />
     <Route path={ROUTES.HOME} component={HomePage} />
@@ -32,9 +30,14 @@ const App = () => (
     <Route path={ROUTES.ACCOUNT} component={AccountPage} />
     <Route path={ROUTES.ADMIN} component={AdminPage} />
     <Route path={ROUTES.MANAGE_USERS} component={ManageUsers} />
+
+    {/* Admin Manage Events */}
     <Route exact path={ROUTES.MANAGE_EVENTS} component={ManageEvents} />
     <Route exact path={ROUTES.CREATE_EVENT} component={CreateEvent} />
     <Route path={ROUTES.VIEW_EVENT} component={ViewEvent} />
+
+    {/* User Events */}
+    <Route path={ROUTES.EVENTS} component={EventsPage} />
   </Router>
 );
 export default withAuthentication(App);
