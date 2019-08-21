@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu, Dropdown } from "semantic-ui-react";
 
 import { AuthUserContext } from "../Session";
 import * as ROUTES from "../../constants/routes";
@@ -21,9 +21,28 @@ const NavigationAuth = ({ authUser }) => (
       <Menu.Item name="my account" />
     </Link>
     {!!authUser.roles[ROLES.ADMIN] && (
-      <Link to={ROUTES.ADMIN} name="admin">
-        <Menu.Item name="admin" />
-      </Link>
+      <Dropdown item text="Admin">
+        <Dropdown.Menu>
+          <Dropdown.Item>
+            <Link
+              to={ROUTES.MANAGE_EVENTS}
+              name="manageEvents"
+              style={{ color: "black" }}
+            >
+              Manage Events
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link
+              to={ROUTES.MANAGE_USERS}
+              name="manageUsers"
+              style={{ color: "black" }}
+            >
+              Manage Users
+            </Link>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     )}
     <Menu.Item position="right">
       <SignOutButton />
