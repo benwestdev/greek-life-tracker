@@ -67,6 +67,15 @@ class Firebase {
   // *** Event API ***
   event = uid => this.db.ref(`events/${uid}`);
   events = () => this.db.ref(`events`);
+
+  // *** Attendance API ***
+  attendance = (eventUID, uid) =>
+    this.db.ref(`events/${eventUID}/attendance/${uid}`);
+  attendances = eventUID => this.db.ref(`events/${eventUID}/attendances`);
+
+  userAttendance = (userUID, uid) =>
+    this.db.ref(`user/${userUID}/attendance/${uid}`);
+  userAttendances = userUID => this.db.ref(`users/${userUID}/attendance`);
 }
 
 export default Firebase;
