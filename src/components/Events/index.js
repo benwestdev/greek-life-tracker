@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Header, Dimmer, Loader, Button } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
-import { withAuthorization } from "../Session";
+import { withAuthorization, AuthUserContext } from "../Session";
 import * as ROLES from "../../constants/roles";
 import EventList from "./eventList";
 import { compose } from "recompose";
@@ -38,26 +38,38 @@ class EventsPage extends Component {
     });
   }
 
+  handleAttend = (event, userId) => {
+    console.log("attending ", event.uid, " - ", userId);
+  };
+
   render() {
     const { allEvents, loading } = this.state;
     return (
-      <Container className="body-container">
-        <Header as="h1" textAlign="center">
-          All Events
-        </Header>
-        {loading && (
-          <Dimmer active inverted>
-            <Loader inverted />
-          </Dimmer>
-        )}
-        {allEvents.length > 0 ? (
-          <Container>
-            <EventList events={allEvents} />
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <Container className="body-container">
+            <Header as="h1" textAlign="center">
+              All Events
+            </Header>
+            {loading && (
+              <Dimmer active inverted>
+                <Loader inverted />
+              </Dimmer>
+            )}
+            {allEvents.length > 0 ? (
+              <Container>
+                <EventList
+                  events={allEvents}
+                  userId={authUser.uid}
+                  onAttend={this.handleAttend}
+                />
+              </Container>
+            ) : (
+              <p>Events to attend</p>
+            )}
           </Container>
-        ) : (
-          <p>Events to attend</p>
         )}
-      </Container>
+      </AuthUserContext.Consumer>
     );
   }
 }

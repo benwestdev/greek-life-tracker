@@ -4,17 +4,22 @@ import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
 
 import * as ROUTES from "../../constants/routes";
 
-const EventList = ({ events }) => (
+const EventList = ({ events, userId, onAttend }) => (
   <Container style={{ marginTop: "40px" }}>
     <Card.Group centered>
       {events.map(event => (
-        <EventItem key={event.uid} event={event} />
+        <EventItem
+          key={event.uid}
+          event={event}
+          userId={userId}
+          onAttend={onAttend}
+        />
       ))}
     </Card.Group>
   </Container>
 );
 
-const EventItem = ({ event }) => (
+const EventItem = ({ event, userId, onAttend }) => (
   <Card>
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
@@ -23,21 +28,13 @@ const EventItem = ({ event }) => (
         <EventDetailsView event={event} />
       </Card.Description>
 
-      {/* <Grid columns={2} style={{ marginTop: "5px" }}>
-          <Grid.Column>
-            <Button
-              className="button-theme shorter red"
-              onClick={() => onDelete(event.uid)}
-            >
-              Delete
-            </Button>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to={`${ROUTES.VIEW_EVENT}/${event.uid}`}>
-              <Button className="button-theme shorter">View/Edit</Button>
-            </Link>
-          </Grid.Column>
-        </Grid> */}
+      <Button
+        style={{ margin: "7px" }}
+        className="button-theme shorter"
+        onClick={() => onAttend(event, userId)}
+      >
+        Attended
+      </Button>
     </Card.Content>
   </Card>
 );
