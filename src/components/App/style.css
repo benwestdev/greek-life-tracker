@@ -29,3 +29,13 @@
     color: #fff;
     transform: translateY(-7px);
 }
+
+
+.ui.button.button-theme.smaller {
+    width: 75% !important;
+}
+
+.ui.button.button-theme.orange {
+    background-color: #f39c12 !important;
+    box-shadow: 0px 15px 20px rgba(243, 156, 18, .4);
+}
