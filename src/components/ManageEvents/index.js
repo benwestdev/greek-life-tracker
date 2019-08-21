@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Container, Header, Dimmer, Loader } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { Container, Header, Dimmer, Loader, Button } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
 import { withAuthorization } from "../Session";
 import * as ROLES from "../../constants/roles";
+import * as ROUTES from "../../constants/routes";
 import EventList from "./eventList";
 import { compose } from "recompose";
 
@@ -49,6 +51,11 @@ class ManageEventsPage extends Component {
         <Header as="h1" textAlign="center">
           Manage Events
         </Header>
+        <Container textAlign="center">
+          <Link to={ROUTES.CREATE_EVENT}>
+            <Button className="button-theme smaller">Make new event!</Button>
+          </Link>
+        </Container>
         {loading && (
           <Dimmer active inverted>
             <Loader inverted>Loading</Loader>
@@ -57,8 +64,10 @@ class ManageEventsPage extends Component {
         {events.length > 0 ? (
           <EventList events={events} />
         ) : (
-          <Container textAlign="center">
-            <p>No events setup!</p>
+          <Container textAlign="center" style={{ marginTop: "75px" }}>
+            <p style={{ fontSize: "1.5em" }}>
+              No events setup yet..start making some
+            </p>
           </Container>
         )}
       </Container>
