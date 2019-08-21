@@ -20,6 +20,11 @@ const NavigationAuth = ({ authUser }) => (
     <Link to={ROUTES.ACCOUNT} name="account">
       <Menu.Item name="my account" />
     </Link>
+    {!!authUser.roles[ROLES.STUDENT] && (
+      <Link to={ROUTES.EVENTS} name="events">
+        <Menu.Item name="events" />
+      </Link>
+    )}
     {!!authUser.roles[ROLES.ADMIN] && (
       <Dropdown item text="Admin">
         <Dropdown.Menu>
