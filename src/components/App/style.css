@@ -35,7 +35,16 @@
     width: 75% !important;
 }
 
+.ui.button.button-theme.shorter {
+    padding: 8px;
+}
+
 .ui.button.button-theme.orange {
     background-color: #f39c12 !important;
     box-shadow: 0px 15px 20px rgba(243, 156, 18, .4);
+}
+
+.ui.button.button-theme.red {
+    background-color: #ee5253 !important;
+    box-shadow: 0px 15px 20px rgba(231, 76, 60, 0.4);
 }
