@@ -63,6 +63,10 @@ class Firebase {
         fallback();
       }
     });
+
+  // *** Event API ***
+  event = uid => this.db.ref(`events/${uid}`);
+  events = () => this.db.ref(`events`);
 }
 
 export default Firebase;
