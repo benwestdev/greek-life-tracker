@@ -60,26 +60,18 @@ class CreateEventBase extends Component {
     }
   };
 
-  onSubmit = authUser => {
-    console.log("here is the authUser though: ", authUser);
-    const {
-      name,
-      type,
-      points,
-      date,
-      startTime,
-      endTime,
-      location
-    } = this.state;
-    this.props.firebase.events().push({
-      name,
-      type,
-      points,
-      date,
-      startTime,
-      endTime,
-      location
-    });
+  onSubmit = () => {
+    //TODO: add toast error handling & only grab event related fields from state when that happens
+    const eventObject = this.state;
+    console.log(eventObject);
+    this.props.firebase
+      .addEvent(eventObject)
+      .then(() => {
+        console.log("success");
+      })
+      .catch(error => {
+        console.log("error adding event: ", error);
+      });
     this.setState({ ...INITIAL_STATE });
   };
 
