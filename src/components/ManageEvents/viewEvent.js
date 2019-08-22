@@ -20,50 +20,17 @@ class EventViewPage extends Component {
   }
 
   componentDidMount() {
-    console.log("mounting");
     this.setState({ loading: true });
-    const eventUID = this.props.match.params.id;
-    console.log(eventUID);
-
-    this.props.firebase.event(eventUID).on("value", snapshot => {
-      const event = snapshot.val();
-      event.uid = eventUID;
-      //TODO: Sort this by status/date in DB call
-      if (event.attendances) {
-        const attendeesList = Object.keys(event.attendances).map(key => ({
-          ...event.attendances[key],
-          uid: key
-        }));
-        event.attendees = attendeesList;
-        const userIds = event.attendees.map(attendee => {
-          const keyList = Object.keys(attendee);
-          return keyList.length === 1 &&
-            attendee[keyList[0]] === STATUSES.PENDING
-            ? keyList[0]
-            : null;
-        });
-        console.log({ userIds });
-        const fullAttendances = [];
-        if (userIds.length > 0) {
-          const promises = userIds.map(userId =>
-            this.props.firebase.user(userId).once("value")
-          );
-          Promise.all(promises).then(results => {
-            results.forEach(result => {
-              console.log("here");
-              fullAttendances.push(result.val());
-            });
-            console.log("full: ", fullAttendances);
-            event.fullAttendances = fullAttendances;
-            console.log({ event });
-            this.setState({
-              event: event,
-              loading: false
-            });
-          });
-        }
-      }
-    });
+    const eventUid = this.props.match.params.id;
+    //TODO: add toast error handling & only grab event related fields from state when that happens
+    this.props.firebase
+      .getEvent(eventUid)
+      .then(event => {
+        this.setState({ event });
+      })
+      .catch(error => {
+        console.log("Error getting event: ", error);
+      });
   }
 
   componentWillUnmount() {
