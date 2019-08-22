@@ -33,9 +33,11 @@ class EventsPage extends Component {
         eventList.forEach(event => {
           if (event.attendances) {
             const attendeesList = Object.keys(event.attendances).map(key => ({
-              ...event.attendances[key],
-              uid: key
+              ...event.attendances[key]
             }));
+            attendeesList.forEach(attendee => {
+              delete attendee.uid;
+            });
             event.attendees = attendeesList;
           }
         });
@@ -43,7 +45,6 @@ class EventsPage extends Component {
           allEvents: eventList,
           loading: false
         });
-        console.log(eventList);
       } else {
         this.setState({ allEvents: [], loading: false });
       }
