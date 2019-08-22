@@ -1,6 +1,7 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/firestore";
 
 import { DEV_CONFIG, PROD_CONFIG } from "./config";
 
@@ -12,6 +13,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.database();
+    this.firestore = app.firestore();
 
     this.emailAuthProvider = app.auth.EmailAuthProvider;
     this.googleProvider = new app.auth.GoogleAuthProvider();
@@ -76,6 +78,159 @@ class Firebase {
   userAttendance = (userUID, uid) =>
     this.db.ref(`user/${userUID}/attendance/${uid}`);
   userAttendances = userUID => this.db.ref(`users/${userUID}/attendance`);
+
+  //*** FIRESTORE USER API  ***/;
+  getUsers = () =>
+    this.firestore
+      .collection("users")
+      .get()
+      .then(querySnapshot => {
+        const users = [];
+        querySnapshot.forEach(doc => {
+          users.push({ uid: doc.id, ...doc.data() });
+        });
+        console.log({ users });
+        return users;
+      });
+
+  getUser = uid =>
+    this.firestore
+      .collection("users")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          return { uid: doc.id, ...doc.data() };
+        } else {
+          console.log("no document found");
+          return null;
+        }
+      });
+
+  addUser = userObject =>
+    this.firestore
+      .collection("users")
+      .add(userObject)
+      .then(docRef => {
+        console.log("Saved user: ", docRef);
+      })
+      .catch(error => {
+        console.log("Error saving user: ", error);
+      });
+
+  editUser = (uid, userObject) =>
+    this.firestore
+      .collection("users")
+      .doc(uid)
+      .set(userObject)
+      .then(response => {
+        console.log("Edit successful");
+      })
+      .catch(error => {
+        console.log("Error updating user: ", uid, " ", error);
+      });
+
+  //** FIRESTORE EVENT API ***/
+  getEvents = () =>
+    this.firestore
+      .collection("events")
+      .get()
+      .then(querySnapshot => {
+        const events = [];
+        querySnapshot.forEach(doc => {
+          events.push({ uid: doc.id, ...doc.data() });
+        });
+        console.log({ events });
+        return events;
+      });
+
+  getEvent = uid =>
+    this.firestore
+      .collection("events")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          return { uid: doc.id, ...doc.data() };
+        } else {
+          console.log("no document found");
+          return null;
+        }
+      });
+
+  addEvent = eventObject =>
+    this.firestore
+      .collection("events")
+      .add(eventObject)
+      .then(response => {
+        console.log("Event saved: ", response);
+      })
+      .catch(error => {
+        console.log("Error saving event: ", error);
+      });
+
+  editEvent = (uid, eventObject) =>
+    this.firestore
+      .collection("events")
+      .doc("uid")
+      .set(eventObject)
+      .then(() => {
+        console.log("Edit successful");
+      })
+      .catch(error => {
+        console.log("Error updating event: ", uid, " ", error);
+      });
+
+  //** FIRESTORE ATTENDANCES API ***/
+  getAttendances = () =>
+    this.firestore
+      .collection("attendances")
+      .get()
+      .then(querySnapshot => {
+        const attendances = [];
+        querySnapshot.forEach(doc => {
+          attendances.push({ uid: doc.id, ...doc.data() });
+        });
+        console.log({ attendances });
+        return attendances;
+      });
+
+  getAttendance = uid =>
+    this.firestore
+      .collection("attendances")
+      .doc(uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          return { uid: doc.id, ...doc.data() };
+        } else {
+          console.log("no document found");
+          return null;
+        }
+      });
+
+  addAttendances = attendanceObject =>
+    this.firestore
+      .collection("attendances")
+      .add(attendanceObject)
+      .then(response => {
+        console.log("Attendance saved: ", response);
+      })
+      .catch(error => {
+        console.log("Error saving attendance: ", error);
+      });
+
+  editAttendance = (uid, attendanceObject) =>
+    this.firestore
+      .collection("attendances")
+      .doc("uid")
+      .set(attendanceObject)
+      .then(() => {
+        console.log("Edit successful");
+      })
+      .catch(error => {
+        console.log("Error updating attendance: ", uid, " ", error);
+      });
 }
 
 export default Firebase;
