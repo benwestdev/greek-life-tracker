@@ -33,7 +33,7 @@ const EventItem = ({ event, onDelete }) => (
           </Button>
         </Grid.Column>
         <Grid.Column>
-          <Link to={`${ROUTES.VIEW_EVENT}/${event.uid}`}>
+          <Link to={`/manageEvents/view/${event.uid}`}>
             <Button className="button-theme shorter">View/Edit</Button>
           </Link>
         </Grid.Column>
