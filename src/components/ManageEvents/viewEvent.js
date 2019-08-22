@@ -31,7 +31,8 @@ class EventViewPage extends Component {
       //TODO: Sort this by status/date in DB call
       if (event.attendances) {
         const attendeesList = Object.keys(event.attendances).map(key => ({
-          ...event.attendances[key]
+          ...event.attendances[key],
+          uid: key
         }));
         event.attendees = attendeesList;
         const userIds = event.attendees.map(attendee => {
@@ -69,6 +70,10 @@ class EventViewPage extends Component {
     this.props.firebase.user(this.props.match.params.id).off();
   }
 
+  handleApproveReject = () => {
+    console.log("approving or rejecting");
+  };
+
   render() {
     const { event, loading } = this.state;
     return (
@@ -83,7 +88,12 @@ class EventViewPage extends Component {
         )}
         <EventDetailsView event={event} />
         <Divider />
-        {event.fullAttendances && <ApprovalListSection event={event} />}
+        {event.fullAttendances && (
+          <ApprovalListSection
+            event={event}
+            handleApproveReject={this.handleApproveReject}
+          />
+        )}
       </Container>
     );
   }

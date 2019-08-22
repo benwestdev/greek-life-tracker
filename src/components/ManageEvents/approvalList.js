@@ -8,7 +8,7 @@ const ApprovalListSection = ({ event, handleApproveReject }) => (
     <Header as="h1" textAlign="center">
       Approval List for 123 {event.name}
     </Header>
-    <ApprovalList event={event} />
+    <ApprovalList event={event} handleApproveReject={handleApproveReject} />
   </Container>
 );
 
@@ -34,9 +34,7 @@ const ApprovalList = ({ event, handleApproveReject }) => (
                 <Button
                   basic
                   color="green"
-                  onClick={() =>
-                    handleApproveReject(attendance.id, STATUSES.APPROVED)
-                  }
+                  onClick={() => handleApproveReject()}
                 >
                   Approve
                 </Button>

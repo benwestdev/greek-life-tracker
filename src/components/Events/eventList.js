@@ -27,7 +27,7 @@ const EventItem = ({ event, userId, onAttend }) => (
       <Card.Description>
         <EventDetailsView event={event} />
       </Card.Description>
-      {event.attendees &&
+      {/* {event.attendees &&
       event.attendees.filter(att => att[userId] && att[userId]) ? (
         <Button style={{ margin: "7px" }} className="button-theme shorter">
           You attended
@@ -40,7 +40,15 @@ const EventItem = ({ event, userId, onAttend }) => (
         >
           Mark as Attended
         </Button>
-      )}
+      )} */}
+
+      <Button
+        style={{ margin: "7px" }}
+        className="button-theme shorter"
+        onClick={() => onAttend(event, userId)}
+      >
+        Mark as Attended
+      </Button>
     </Card.Content>
   </Card>
 );
