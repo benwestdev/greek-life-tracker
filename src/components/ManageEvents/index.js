@@ -21,23 +21,15 @@ class ManageEventsPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-
-    this.props.firebase.events().on("value", snapshot => {
-      const eventObject = snapshot.val();
-
-      if (eventObject) {
-        const eventList = Object.keys(eventObject).map(key => ({
-          ...eventObject[key],
-          uid: key
-        }));
-        this.setState({
-          events: eventList,
-          loading: false
-        });
-      } else {
+    //TODO: add toast error handling & only grab event related fields from state when that happens
+    this.props.firebase
+      .getEvents()
+      .then(events => {
+        this.setState({ events, loading: false });
+      })
+      .catch(error => {
         this.setState({ events: [], loading: false });
-      }
-    });
+      });
   }
 
   onDelete = uid => {
