@@ -21,35 +21,16 @@ class EventsPage extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-
-    this.props.firebase.events().on("value", snapshot => {
-      const eventObject = snapshot.val();
-
-      if (eventObject) {
-        const eventList = Object.keys(eventObject).map(key => ({
-          ...eventObject[key],
-          uid: key
-        }));
-        eventList.forEach(event => {
-          if (event.attendances) {
-            const attendeesList = Object.keys(event.attendances).map(key => ({
-              ...event.attendances[key]
-            }));
-            attendeesList.forEach(attendee => {
-              delete attendee.uid;
-            });
-            event.attendees = attendeesList;
-          }
-        });
-        this.setState({
-          allEvents: eventList,
-          loading: false
-        });
-      } else {
+    //TODO: add error handling with toasts and decide if we want to show all events or just upcoming etc....
+    this.props.firebase
+      .getEvents()
+      .then(events => {
+        this.setState({ allEvents: events, loading: false });
+      })
+      .catch(error => {
+        console.log("Error getting events: ", error);
         this.setState({ allEvents: [], loading: false });
-      }
-    });
-    this.props.firebase.attendances().on("value", snapshot => {});
+      });
   }
 
   handleAttend = (event, userId) => {
