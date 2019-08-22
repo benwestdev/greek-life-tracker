@@ -46,11 +46,7 @@ class SignUpFormBase extends Component {
         } else if (type === "faculty") {
           roles[ROLES.VIEWER] = ROLES.VIEWER;
         }
-        return this.props.firebase.user(authUser.user.uid).set({
-          username,
-          email,
-          roles
-        });
+        this.props.firebase.addUser({ username, email, roles });
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
