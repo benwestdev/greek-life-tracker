@@ -209,7 +209,7 @@ class Firebase {
         }
       });
 
-  addAttendances = attendanceObject =>
+  addAttendance = attendanceObject =>
     this.firestore
       .collection("attendances")
       .add(attendanceObject)

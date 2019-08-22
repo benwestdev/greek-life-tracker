@@ -33,16 +33,26 @@ class EventsPage extends Component {
       });
   }
 
-  handleAttend = (event, userId) => {
-    console.log("attending ", event.uid, " - ", userId);
-    console.log(STATUSES.PENDING);
-    this.props.firebase.attendances(event.uid).push({
-      [userId]: STATUSES.PENDING
-    });
-
-    this.props.firebase.userAttendances(userId).push({
-      [event.uid]: STATUSES.PENDING
-    });
+  handleAttend = (event, user) => {
+    console.log(event);
+    console.log(user);
+    const attendanceObject = {
+      eventId: event.uid,
+      eventName: event.name,
+      date: moment().format("LL"),
+      userId: user.uid,
+      username: user.username,
+      points: event.points,
+      status: STATUSES.PENDING
+    };
+    this.props.firebase
+      .addAttendance(attendanceObject)
+      .then(response => {
+        console.log("success");
+      })
+      .catch(error => {
+        console.log("Error saving attendance: ", error);
+      });
   };
 
   render() {
@@ -63,7 +73,7 @@ class EventsPage extends Component {
               <Container>
                 <EventList
                   events={allEvents}
-                  userId={authUser.uid}
+                  user={authUser}
                   onAttend={this.handleAttend}
                 />
               </Container>

@@ -4,14 +4,14 @@ import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
 
 import * as ROUTES from "../../constants/routes";
 
-const EventList = ({ events, userId, onAttend }) => (
+const EventList = ({ events, user, onAttend }) => (
   <Container style={{ marginTop: "40px" }}>
     <Card.Group centered>
       {events.map(event => (
         <EventItem
           key={event.uid}
           event={event}
-          userId={userId}
+          user={user}
           onAttend={onAttend}
         />
       ))}
@@ -19,7 +19,7 @@ const EventList = ({ events, userId, onAttend }) => (
   </Container>
 );
 
-const EventItem = ({ event, userId, onAttend }) => (
+const EventItem = ({ event, user, onAttend }) => (
   <Card>
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
@@ -45,7 +45,7 @@ const EventItem = ({ event, userId, onAttend }) => (
       <Button
         style={{ margin: "7px" }}
         className="button-theme shorter"
-        onClick={() => onAttend(event, userId)}
+        onClick={() => onAttend(event, user)}
       >
         Mark as Attended
       </Button>
