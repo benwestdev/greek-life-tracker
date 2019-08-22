@@ -20,10 +20,10 @@ const ApprovalList = ({ event, handleApproveReject }) => (
           <Card key={index}>
             <Card.Content>
               {/* <Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' /> */}
-              <Card.Header>{attendance.username}</Card.Header>
+              {/* <Card.Header>{attendance.username}</Card.Header> */}
               {/* <Card.Meta>{attendance.status}</Card.Meta> */}
               <Card.Description>
-                Give <strong>{attendance.username}</strong>
+                {/* Give <strong>{attendance.username}</strong> */}
                 <strong>{" " + event.points + " "}</strong>points for attending
                 on
                 {" " + event.date}
