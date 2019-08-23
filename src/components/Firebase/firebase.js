@@ -45,21 +45,23 @@ class Firebase {
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
-        this.user(authUser.uid)
-          .once("value")
-          .then(snapshot => {
-            const dbUser = snapshot.val();
-            // default empty roles
-            if (!dbUser.roles) {
-              dbUser.roles = {};
+        this.firestore
+          .collection("users")
+          .doc(authUser.uid)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              console.log("Document data:", doc.data());
+
+              authUser = {
+                uid: authUser.uid,
+                email: authUser.email,
+                ...doc.data()
+              };
+              next(authUser);
+            } else {
+              console.log("No such document!");
             }
-            // merge auth and db user
-            authUser = {
-              uid: authUser.uid,
-              email: authUser.email,
-              ...dbUser
-            };
-            next(authUser);
           });
       } else {
         fallback();
