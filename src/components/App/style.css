@@ -63,7 +63,8 @@
 }
 
 .ui.button.button-theme.shorter {
-    padding: 8px;
+    margin-top: 15px !important;
+    padding: 13px;
 }
 
 .ui.button.button-theme.orange {
