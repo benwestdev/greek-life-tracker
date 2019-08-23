@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
-
-import * as ROUTES from "../../constants/routes";
+import { Container, Header, Card, List, Button } from "semantic-ui-react";
 
 const EventList = ({ events, user, attendances, onAttend }) => (
   <Container style={{ marginTop: "40px" }}>

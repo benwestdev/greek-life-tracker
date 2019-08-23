@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
 
-import * as ROUTES from "../../constants/routes";
-
 const EventList = ({ events, onDelete }) => (
   <Container style={{ marginTop: "40px" }}>
     <Card.Group centered>

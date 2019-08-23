@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Header, Card, Button } from "semantic-ui-react";
 
 import * as STATUSES from "../../constants/statuses";

@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Header,
-  Dimmer,
-  Loader,
-  Table,
-  Checkbox
-} from "semantic-ui-react";
+import { Container, Header, Dimmer, Loader } from "semantic-ui-react";
 
 import { withFirebase } from "../Firebase";
 import { withAuthorization } from "../Session";

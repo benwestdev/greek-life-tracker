@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { compose } from "recompose";
-import { Container, Header, Dimmer, Loader, Button } from "semantic-ui-react";
+import { Container, Header, Dimmer, Loader } from "semantic-ui-react";
 import moment from "moment";
 
 import { withFirebase } from "../Firebase";

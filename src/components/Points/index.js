@@ -5,7 +5,7 @@ import moment from "moment";
 import "./style.css";
 
 import { withFirebase } from "../Firebase";
-import { withAuthorization, AuthUserContext } from "../Session";
+import { withAuthorization } from "../Session";
 import * as ROLES from "../../constants/roles";
 import * as STATUSES from "../../constants/statuses";
 
