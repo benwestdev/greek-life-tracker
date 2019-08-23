@@ -6,6 +6,7 @@ import { FacebookLoginButton } from "react-social-login-buttons";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 import Msg from "../Message";
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -23,16 +24,19 @@ class SignInFacebookBase extends Component {
     super(props);
     this.state = { error: null };
   }
-  onSubmit = event => {
+  onSubmit = () => {
     this.props.firebase
       .doSignInWithFacebook()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.editUser(socialAuthUser.user.uid).set({
-          username: socialAuthUser.additionalUserInfo.profile.name,
-          email: socialAuthUser.additionalUserInfo.profile.email,
-          roles: {}
-        });
+        this.props.firebase.firestore
+          .collection("users")
+          .doc(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.additionalUserInfo.profile.name,
+            email: socialAuthUser.additionalUserInfo.profile.email,
+            roles: { [ROLES.STUDENT]: ROLES.STUDENT }
+          });
       })
       .then(() => {
         this.setState({ error: null });

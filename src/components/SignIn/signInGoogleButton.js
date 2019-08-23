@@ -6,6 +6,7 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 
 import { withFirebase } from "../Firebase";
 import * as ROUTES from "../../constants/routes";
+import * as ROLES from "../../constants/roles";
 import Msg from "../Message";
 
 const ERROR_CODE_ACCOUNT_EXISTS =
@@ -23,16 +24,30 @@ class SignInGoogleBase extends Component {
     super(props);
     this.state = { error: null };
   }
-  onSubmit = event => {
-    this.props.firebase
+  onSubmit = () => {
+    return this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
-        // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.editUser(socialAuthUser.user.uid).set({
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email,
-          roles: {}
-        });
+        this.props.firebase.firestore
+          .collection("users")
+          .doc(socialAuthUser.user.uid)
+          .set({
+            username: socialAuthUser.user.displayName,
+            email: socialAuthUser.user.email,
+            roles: { [ROLES.STUDENT]: ROLES.STUDENT }
+          });
+        // this.props.firebase.getUser(socialAuthUser.user.uid).then(user => {
+        //   if (!user) {
+        //     this.props.firebase.firestore
+        //       .collection("users")
+        //       .doc(socialAuthUser.user.uid)
+        //       .set({
+        //         username: socialAuthUser.user.displayName,
+        //         email: socialAuthUser.user.email,
+        //         roles: { [ROLES.STUDENT]: ROLES.STUDENT }
+        //       });
+        //   }
+        // });
       })
       .then(() => {
         this.setState({ error: null });
