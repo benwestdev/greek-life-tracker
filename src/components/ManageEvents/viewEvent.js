@@ -15,7 +15,8 @@ class EventViewPage extends Component {
 
     this.state = {
       loading: false,
-      event: {}
+      event: {},
+      attendances: []
     };
   }
 
@@ -23,10 +24,15 @@ class EventViewPage extends Component {
     this.setState({ loading: true });
     const eventUid = this.props.match.params.id;
     //TODO: add toast error handling & only grab event related fields from state when that happens
+    this.props.firebase.getEvent(eventUid).then(event => {
+      this.setState({
+        event
+      });
+    });
     this.props.firebase
-      .getEvent(eventUid)
-      .then(event => {
-        this.setState({ event });
+      .getAttendancesByEvent(eventUid)
+      .then(attendances => {
+        this.setState({ attendances, loading: false });
       })
       .catch(error => {
         console.log("Error getting event: ", error);
@@ -37,16 +43,26 @@ class EventViewPage extends Component {
     // this.props.firebase.user(this.props.match.params.id).off();
   }
 
-  handleApproveReject = () => {
-    console.log("approving or rejecting");
+  handleApproveReject = (attendanceUid, status) => {
+    this.props.firebase
+      .editAttendance(attendanceUid, { status })
+      .then(response => {
+        const attendances = this.state.attendances;
+        attendances.forEach(att => {
+          if (att.uid === attendanceUid) {
+            att.status = status;
+          }
+        });
+        this.setState({ attendances });
+      });
   };
 
   render() {
-    const { event, loading } = this.state;
+    const { event, attendances, loading } = this.state;
     return (
       <Container className="body-container">
         <Header as="h1" textAlign="center">
-          {event.name} 123
+          {event.name}
         </Header>
         {loading && (
           <Dimmer>
@@ -55,9 +71,10 @@ class EventViewPage extends Component {
         )}
         <EventDetailsView event={event} />
         <Divider />
-        {event.fullAttendances && (
+        {attendances && (
           <ApprovalListSection
             event={event}
+            attendances={attendances}
             handleApproveReject={this.handleApproveReject}
           />
         )}
