@@ -17,6 +17,7 @@ import ManageEvents from "../ManageEvents";
 import CreateEvent from "../ManageEvents/createEvent";
 import ViewEvent from "../ManageEvents/viewEvent";
 import EventsPage from "../Events";
+import { SignOut } from "../SignOut";
 
 const App = () => (
   <Router>
@@ -30,6 +31,7 @@ const App = () => (
     <Route path={ROUTES.ACCOUNT} component={AccountPage} />
     <Route path={ROUTES.ADMIN} component={AdminPage} />
     <Route path={ROUTES.MANAGE_USERS} component={ManageUsers} />
+    <Route path={ROUTES.SIGN_OUT} component={SignOut} />
 
     {/* Admin Manage Events */}
     <Route exact path={ROUTES.MANAGE_EVENTS} component={ManageEvents} />
