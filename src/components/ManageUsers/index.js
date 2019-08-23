@@ -20,24 +20,33 @@ class ManageUsersPage extends Component {
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.users().on("value", snapshot => {
-      const usersObject = snapshot.val();
-
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key
-      }));
-
-      this.setState({
-        users: usersList,
-        loading: false
-      });
+    this.props.firebase.getUsers().then(users => {
+      this.setState({ users, loading: false });
     });
   }
 
-  componentWillUnmount() {
-    this.props.firebase.users().off();
-  }
+  handleCheckCallback = (userObject, status) => {
+    if (userObject.roles && userObject.roles.hasOwnProperty(status)) {
+      delete userObject.roles[status];
+    } else {
+      userObject.roles[status] = status;
+    }
+
+    this.props.firebase
+      .editUser(userObject.uid, userObject)
+      .then(response => {
+        const users = this.state.users;
+        users.forEach(user => {
+          if (user.uid === userObject.uid) {
+            user.roles = userObject.roles;
+          }
+        });
+        this.setState({ users });
+      })
+      .catch(error => {
+        console.log("error updating user error");
+      });
+  };
 
   render() {
     const { users, loading } = this.state;
@@ -51,7 +60,10 @@ class ManageUsersPage extends Component {
             <Loader inverted>Loading</Loader>
           </Dimmer>
         )}
-        <UserList users={users} />
+        <UserList
+          users={users}
+          handleCheckCallback={this.handleCheckCallback}
+        />
       </Container>
     );
   }
