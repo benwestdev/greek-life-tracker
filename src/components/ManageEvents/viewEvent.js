@@ -85,7 +85,7 @@ class EventViewPage extends Component {
           </Grid.Column>
           <Grid.Column>
             <Link to={`/manageEvents/edit/${event.uid}`}>
-              <Button className="button-theme shorter">Edit{event.uid}</Button>
+              <Button className="button-theme shorter">Edit</Button>
             </Link>
           </Grid.Column>
         </Grid>
