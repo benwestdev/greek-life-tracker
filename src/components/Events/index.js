@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { compose } from "recompose";
 import { Container, Header, Dimmer, Loader, Button } from "semantic-ui-react";
 import moment from "moment";
 
@@ -7,7 +8,6 @@ import { withAuthorization, AuthUserContext } from "../Session";
 import * as ROLES from "../../constants/roles";
 import * as STATUSES from "../../constants/statuses";
 import EventList from "./eventList";
-import { compose } from "recompose";
 
 class EventsPage extends Component {
   constructor(props) {
