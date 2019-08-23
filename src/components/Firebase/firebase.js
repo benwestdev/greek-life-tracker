@@ -51,8 +51,6 @@ class Firebase {
           .get()
           .then(doc => {
             if (doc.exists) {
-              console.log("Document data:", doc.data());
-
               authUser = {
                 uid: authUser.uid,
                 email: authUser.email,
