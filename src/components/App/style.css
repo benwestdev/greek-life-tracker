@@ -88,3 +88,11 @@
  .orange {
      color: orange;
  }
+
+ .center {
+     text-align: center !important;
+ }
+
+ .recharts-wrapper {
+     margin: 0 auto;
+ }
