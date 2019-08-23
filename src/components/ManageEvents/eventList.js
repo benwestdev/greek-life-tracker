@@ -20,8 +20,11 @@ const EventItem = ({ event, onDelete }) => (
       <Card.Description>
         <EventDetailsView event={event} />
       </Card.Description>
-
-      <Grid columns={2} style={{ marginTop: "5px" }}>
+      <Link to={`/manageEvents/view/${event.uid}`}>
+        <Button className="button-theme shorter">View/Edit</Button>
+      </Link>
+      {/* TODO: add code to delete child objects before enabling delete */}
+      {/* <Grid columns={2} style={{ marginTop: "5px" }}>
         <Grid.Column>
           <Button
             className="button-theme shorter red"
@@ -35,7 +38,7 @@ const EventItem = ({ event, onDelete }) => (
             <Button className="button-theme shorter">View/Edit</Button>
           </Link>
         </Grid.Column>
-      </Grid>
+      </Grid> */}
     </Card.Content>
   </Card>
 );
