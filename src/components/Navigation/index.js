@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Dropdown } from "semantic-ui-react";
+import { Menu, Dropdown, Icon } from "semantic-ui-react";
 
 import { AuthUserContext } from "../Session";
 import * as ROUTES from "../../constants/routes";
@@ -17,13 +17,15 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <Menu inverted fixed="top">
-    <Link to={ROUTES.ACCOUNT} name="account">
-      <Menu.Item name="my account" />
+    <Link to={ROUTES.HOME} name="home">
+      <Menu.Item name="home">
+        <Icon name="home" />
+      </Menu.Item>
     </Link>
     {!!authUser.roles[ROLES.STUDENT] && (
       <Fragment>
         <Link to={ROUTES.POINTS} name="points">
-          <Menu.Item name="my points" />
+          <Menu.Item name="points" />
         </Link>
         <Link to={ROUTES.EVENTS} name="events">
           <Menu.Item name="events" />
@@ -54,6 +56,12 @@ const NavigationAuth = ({ authUser }) => (
         </Dropdown.Menu>
       </Dropdown>
     )}
+
+    <Link to={ROUTES.ACCOUNT} name="account">
+      <Menu.Item name="my account">
+        <Icon name="cog" />
+      </Menu.Item>
+    </Link>
     <Menu.Item position="right">
       <SignOutButton />
     </Menu.Item>
