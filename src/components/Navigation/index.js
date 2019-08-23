@@ -39,14 +39,14 @@ const NavigationAuth = ({ authUser }) => (
           name="manageEvents"
           style={{ color: "black" }}
         >
-          <Menu.Item name="Events" />
+          <Menu.Item name="Events-Admin" />
         </Link>
         <Link
           to={ROUTES.MANAGE_USERS}
           name="manageUsers"
           style={{ color: "black" }}
         >
-          <Menu.Item name="Users" />
+          <Menu.Item name="Users-Admin)" />
         </Link>
       </Fragment>
     )}
