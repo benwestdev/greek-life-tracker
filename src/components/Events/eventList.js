@@ -18,7 +18,7 @@ const EventList = ({ events, user, attendances, onAttend }) => (
 );
 
 const EventItem = ({ event, user, attendances, onAttend }) => (
-  <Card>
+  <Card className="effect6">
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
       <Card.Meta content={event.type} />
@@ -30,16 +30,18 @@ const EventItem = ({ event, user, attendances, onAttend }) => (
         att => att.userId === user.uid && att.eventId === event.uid
       ).length > 0 ? (
         <Button
-          style={{ margin: "7px" }}
-          className="button-theme shorter"
+          fluid
+          color="green"
+          className="full-button-width pad-top"
           disabled={true}
         >
-          Marked as Attended
+          You Attended!
         </Button>
       ) : (
         <Button
-          style={{ margin: "7px" }}
-          className="button-theme shorter"
+          fluid
+          color="linkedin"
+          className="full-button-width pad-top"
           onClick={() => onAttend(event, user)}
         >
           Mark as Attended
