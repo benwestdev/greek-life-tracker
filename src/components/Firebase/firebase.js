@@ -228,6 +228,22 @@ class Firebase {
         console.log(error);
       });
 
+  getAttendanceByUser = userUid =>
+    this.firestore
+      .collection("attendances")
+      .where("userId", "==", userUid)
+      .get()
+      .then(querySnapshot => {
+        const attendances = [];
+        querySnapshot.forEach(doc => {
+          attendances.push({ uid: doc.id, ...doc.data() });
+        });
+        return attendances;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   addAttendance = attendanceObject =>
     this.firestore
       .collection("attendances")
