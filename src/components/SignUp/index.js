@@ -139,7 +139,9 @@ class SignUpFormBase extends Component {
             />
           </Form.Field>
           <Button
-            className="button-theme"
+            fluid
+            color="green"
+            className="full-width-button"
             onClick={this.onSubmit}
             disabled={isInvalid}
           >
