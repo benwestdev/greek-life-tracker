@@ -1,0 +1,17 @@
+.huge-count {
+    font-size: 4em;
+    margin-top: 40px !important;
+    margin-bottom: 38px !important;
+}
+
+.big-points {
+    float: right;
+    font-size: 1.5em;
+    margin-bottom: 0px !important;
+}
+
+.status-big {
+    float: left;
+    font-size: 1.5em;
+    margin-bottom: 0px !important;
+}
