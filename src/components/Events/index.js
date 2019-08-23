@@ -54,7 +54,9 @@ class EventsPage extends Component {
     this.props.firebase
       .addAttendance(attendanceObject)
       .then(response => {
-        console.log("success");
+        const attendances = this.state.attendances;
+        attendances.push(attendanceObject);
+        this.setState({ attendances });
       })
       .catch(error => {
         console.log("Error saving attendance: ", error);
@@ -62,7 +64,7 @@ class EventsPage extends Component {
   };
 
   render() {
-    const { allEvents, loading } = this.state;
+    const { allEvents, attendances, loading } = this.state;
     return (
       <AuthUserContext.Consumer>
         {authUser => (
@@ -81,6 +83,7 @@ class EventsPage extends Component {
                   events={allEvents}
                   user={authUser}
                   onAttend={this.handleAttend}
+                  attendances={attendances}
                 />
               </Container>
             ) : (

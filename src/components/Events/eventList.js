@@ -4,7 +4,7 @@ import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
 
 import * as ROUTES from "../../constants/routes";
 
-const EventList = ({ events, user, onAttend }) => (
+const EventList = ({ events, user, attendances, onAttend }) => (
   <Container style={{ marginTop: "40px" }}>
     <Card.Group centered>
       {events.map(event => (
@@ -13,13 +13,14 @@ const EventList = ({ events, user, onAttend }) => (
           event={event}
           user={user}
           onAttend={onAttend}
+          attendances={attendances}
         />
       ))}
     </Card.Group>
   </Container>
 );
 
-const EventItem = ({ event, user, onAttend }) => (
+const EventItem = ({ event, user, attendances, onAttend }) => (
   <Card>
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
@@ -27,28 +28,26 @@ const EventItem = ({ event, user, onAttend }) => (
       <Card.Description>
         <EventDetailsView event={event} />
       </Card.Description>
-      {/* {event.attendees &&
-      event.attendees.filter(att => att[userId] && att[userId]) ? (
-        <Button style={{ margin: "7px" }} className="button-theme shorter">
-          You attended
+      {attendances &&
+      attendances.filter(
+        att => att.userId === user.uid && att.eventId === event.uid
+      ).length > 0 ? (
+        <Button
+          style={{ margin: "7px" }}
+          className="button-theme shorter"
+          disabled={true}
+        >
+          Marked as Attended
         </Button>
       ) : (
         <Button
           style={{ margin: "7px" }}
           className="button-theme shorter"
-          onClick={() => onAttend(event, userId)}
+          onClick={() => onAttend(event, user)}
         >
           Mark as Attended
         </Button>
-      )} */}
-
-      <Button
-        style={{ margin: "7px" }}
-        className="button-theme shorter"
-        onClick={() => onAttend(event, user)}
-      >
-        Mark as Attended
-      </Button>
+      )}
     </Card.Content>
   </Card>
 );
