@@ -15,7 +15,8 @@ class EventsPage extends Component {
 
     this.state = {
       loading: false,
-      allEvents: []
+      allEvents: [],
+      attendances: []
     };
   }
 
@@ -30,6 +31,11 @@ class EventsPage extends Component {
       .catch(error => {
         console.log("Error getting events: ", error);
         this.setState({ allEvents: [], loading: false });
+      });
+    this.props.firebase
+      .getAttendanceByUser(this.props.authUser.uid)
+      .then(attendances => {
+        this.setState({ attendances });
       });
   }
 
