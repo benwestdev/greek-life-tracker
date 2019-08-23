@@ -13,7 +13,7 @@ const EventList = ({ events, onDelete }) => (
 );
 
 const EventItem = ({ event, onDelete }) => (
-  <Card>
+  <Card className="effect6">
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
       <Card.Meta content={event.type} />
@@ -21,7 +21,9 @@ const EventItem = ({ event, onDelete }) => (
         <EventDetailsView event={event} />
       </Card.Description>
       <Link to={`/manageEvents/view/${event.uid}`}>
-        <Button className="button-theme shorter">View/Edit</Button>
+        <Button fluid color="linkedin" className="pad-top">
+          Manage
+        </Button>
       </Link>
       {/* TODO: add code to delete child objects before enabling delete */}
       {/* <Grid columns={2} style={{ marginTop: "5px" }}>

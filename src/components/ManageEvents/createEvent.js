@@ -202,14 +202,21 @@ class CreateEventBase extends Component {
           <Grid columns={2}>
             <Grid.Column>
               <Link to={ROUTES.MANAGE_EVENTS}>
-                <Button className="button-theme orange" color="orange">
+                <Button
+                  fluid
+                  basic
+                  className="button-medium-width"
+                  color="orange"
+                >
                   Back
                 </Button>
               </Link>
             </Grid.Column>
             <Grid.Column>
               <Button
-                className="button-theme"
+                fluid
+                className="button-medium-width"
+                color="green"
                 disabled={isDisabled}
                 onClick={this.onSubmit}
               >

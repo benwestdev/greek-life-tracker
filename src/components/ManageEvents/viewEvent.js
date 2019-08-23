@@ -75,20 +75,33 @@ class EventViewPage extends Component {
           </Dimmer>
         )}
         <EventDetailsView event={event} />
-        <Grid columns={2}>
-          <Grid.Column>
-            <Link to={ROUTES.MANAGE_EVENTS}>
-              <Button className="button-theme shorter orange" color="orange">
-                Back
-              </Button>
-            </Link>
-          </Grid.Column>
-          <Grid.Column>
-            <Link to={`/manageEvents/edit/${event.uid}`}>
-              <Button className="button-theme shorter">Edit</Button>
-            </Link>
-          </Grid.Column>
-        </Grid>
+        <Container>
+          <Grid columns={2}>
+            <Grid.Column>
+              <Link to={ROUTES.MANAGE_EVENTS}>
+                <Button
+                  fluid
+                  className="pad-top full-width-button"
+                  basic
+                  color="orange"
+                >
+                  Back
+                </Button>
+              </Link>
+            </Grid.Column>
+            <Grid.Column>
+              <Link to={`/manageEvents/edit/${event.uid}`}>
+                <Button
+                  fluid
+                  className="pad-top full-width-button"
+                  color="green"
+                >
+                  Edit
+                </Button>
+              </Link>
+            </Grid.Column>
+          </Grid>
+        </Container>
         <Divider />
         {attendances && (
           <ApprovalListSection

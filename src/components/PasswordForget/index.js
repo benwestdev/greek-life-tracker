@@ -58,7 +58,9 @@ class PasswordForgetFormBase extends Component {
             placeholder="Email Address"
           />
           <Button
-            className="button-theme"
+            fluid
+            color="green"
+            className="full-width-button"
             disabled={isInvalid}
             onClick={this.onSubmit}
           >

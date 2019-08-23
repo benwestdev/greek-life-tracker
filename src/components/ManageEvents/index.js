@@ -54,7 +54,9 @@ class ManageEventsPage extends Component {
         </Header>
         <Container textAlign="center">
           <Link to={ROUTES.CREATE_EVENT}>
-            <Button className="button-theme smaller">Make new event!</Button>
+            <Button fluid color="green">
+              Make New Event
+            </Button>
           </Link>
         </Container>
         {loading && (

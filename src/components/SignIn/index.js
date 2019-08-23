@@ -23,7 +23,7 @@ on your personal account page.
 `;
 
 const SignInPage = () => (
-  <Container className="body-container">
+  <Container className="body-container sign-in">
     <Header as="h1" textAlign="center">
       Sign In
     </Header>
@@ -92,7 +92,9 @@ class SignInFormBase extends Component {
             placeholder="Password"
           />
           <Button
-            className="button-theme"
+            fluid
+            className="full-width-button"
+            color="green"
             disabled={isInvalid}
             onClick={this.onSubmit}
           >

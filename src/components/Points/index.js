@@ -55,7 +55,7 @@ const EventAttendance = ({ attendances }) => (
     <Card.Group className="top-margin" centered>
       {attendances.map(attendance => {
         return (
-          <Card key={attendance.uid}>
+          <Card key={attendance.uid} className="effect6">
             <Card.Content>
               <Card.Header>{attendance.eventName}</Card.Header>
               <Card.Meta content={attendance.eventType} />

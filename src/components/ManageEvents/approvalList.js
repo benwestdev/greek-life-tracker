@@ -1,12 +1,12 @@
 import React from "react";
-import { Container, Header, Card, Button } from "semantic-ui-react";
+import { Container, Header, Card, Button, Grid } from "semantic-ui-react";
 
 import * as STATUSES from "../../constants/statuses";
 
 const ApprovalListSection = ({ event, handleApproveReject, attendances }) => (
   <Container className="body-container">
     <Header as="h1" textAlign="center">
-      Approval List for 123 {event.name}
+      Approval List
     </Header>
     <ApprovalList
       event={event}
@@ -35,27 +35,32 @@ const ApprovalList = ({ event, handleApproveReject, attendances }) => (
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <div className="ui two buttons">
-                  <Button
-                    basic
-                    color="green"
-                    onClick={() =>
-                      handleApproveReject(attendance.uid, STATUSES.APPROVED)
-                    }
-                  >
-                    Approve
-                  </Button>
-                  s
-                  <Button
-                    basic
-                    color="red"
-                    onClick={() =>
-                      handleApproveReject(attendance.uid, STATUSES.DENIED)
-                    }
-                  >
-                    Decline
-                  </Button>
-                </div>
+                <Grid columns={2}>
+                  <Grid.Column>
+                    <Button
+                      fluid
+                      className="full-width-button"
+                      color="green"
+                      onClick={() =>
+                        handleApproveReject(attendance.uid, STATUSES.APPROVED)
+                      }
+                    >
+                      Approve
+                    </Button>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Button
+                      className="full-width-button"
+                      fluid
+                      color="red"
+                      onClick={() =>
+                        handleApproveReject(attendance.uid, STATUSES.DENIED)
+                      }
+                    >
+                      Decline
+                    </Button>
+                  </Grid.Column>
+                </Grid>
               </Card.Content>
             </Card>
           );

@@ -33,38 +33,34 @@ const NavigationAuth = ({ authUser }) => (
       </Fragment>
     )}
     {!!authUser.roles[ROLES.ADMIN] && (
-      <Dropdown item text="Admin">
-        <Dropdown.Menu>
-          <Dropdown.Item>
-            <Link
-              to={ROUTES.MANAGE_EVENTS}
-              name="manageEvents"
-              style={{ color: "black" }}
-            >
-              Manage Events
-            </Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link
-              to={ROUTES.MANAGE_USERS}
-              name="manageUsers"
-              style={{ color: "black" }}
-            >
-              Manage Users
-            </Link>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <Fragment>
+        <Link
+          to={ROUTES.MANAGE_EVENTS}
+          name="manageEvents"
+          style={{ color: "black" }}
+        >
+          <Menu.Item name="Events" />
+        </Link>
+        <Link
+          to={ROUTES.MANAGE_USERS}
+          name="manageUsers"
+          style={{ color: "black" }}
+        >
+          <Menu.Item name="Users" />
+        </Link>
+      </Fragment>
     )}
 
-    <Link to={ROUTES.ACCOUNT} name="account">
-      <Menu.Item name="my account">
-        <Icon name="cog" />
+    <Menu.Menu position="right">
+      <Link to={ROUTES.ACCOUNT} name="account">
+        <Menu.Item>
+          <Icon name="cog" />
+        </Menu.Item>
+      </Link>
+      <Menu.Item>
+        <SignOutButton />
       </Menu.Item>
-    </Link>
-    <Menu.Item position="right">
-      <SignOutButton />
-    </Menu.Item>
+    </Menu.Menu>
   </Menu>
 );
 
