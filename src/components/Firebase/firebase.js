@@ -211,6 +211,23 @@ class Firebase {
         }
       });
 
+  getAttendancesByEvent = eventUid =>
+    this.firestore
+      .collection("attendances")
+      .where("eventId", "==", eventUid)
+      .get()
+      .then(querySnapshot => {
+        const attendances = [];
+        querySnapshot.forEach(doc => {
+          attendances.push({ uid: doc.id, ...doc.data() });
+        });
+        console.log({ attendances });
+        return attendances;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   addAttendance = attendanceObject =>
     this.firestore
       .collection("attendances")
@@ -225,8 +242,8 @@ class Firebase {
   editAttendance = (uid, attendanceObject) =>
     this.firestore
       .collection("attendances")
-      .doc("uid")
-      .set(attendanceObject)
+      .doc(uid)
+      .update(attendanceObject)
       .then(() => {
         console.log("Edit successful");
       })
