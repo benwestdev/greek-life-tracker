@@ -36,18 +36,6 @@ class SignInGoogleBase extends Component {
             email: socialAuthUser.user.email,
             roles: { [ROLES.STUDENT]: ROLES.STUDENT }
           });
-        // this.props.firebase.getUser(socialAuthUser.user.uid).then(user => {
-        //   if (!user) {
-        //     this.props.firebase.firestore
-        //       .collection("users")
-        //       .doc(socialAuthUser.user.uid)
-        //       .set({
-        //         username: socialAuthUser.user.displayName,
-        //         email: socialAuthUser.user.email,
-        //         roles: { [ROLES.STUDENT]: ROLES.STUDENT }
-        //       });
-        //   }
-        // });
       })
       .then(() => {
         this.setState({ error: null });
