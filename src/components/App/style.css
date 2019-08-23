@@ -1,63 +1,13 @@
  * {
      font-family: 'Quicksand', sans-serif !important;
-     /* color: #777777; */
  }
-
- /* .ui.inverted.menu .item,
- .ui.inverted.menu .item {
-     color: #fff !important;
-     font-weight: bold !important;
- } */
 
  i.icon {
      font-family: Icons !important;
  }
 
- /* body {
-     background-color: rgb(230, 234, 237, .2);
- } */
-
- /* .ui.form input:not([type]),
-.ui.form input[type=date],
-.ui.form input[type=datetime-local],
-.ui.form input[type=email],
-.ui.form input[type=file],
-.ui.form input[type=number],
-.ui.form input[type=password],
-.ui.form input[type=search],
-.ui.form input[type=tel],
-.ui.form input[type=text],
-.ui.form input[type=time],
-.ui.form input[type=url] {
-    background: #f8fafb;
-} */
-
  .ui.container.body-container {
      margin-top: 75px;
- }
-
- .ui.button.button-theme {
-     /* background-color: #4ecdc4;
-box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-color: #fff;
-padding: 15px;
-width: 100%;
-font-size: 1.25em;
-font-weight: bold;
-border: 1px solid rgb(211, 211, 211, .5);
-transition: all 0.3s ease 0s;
-cursor: pointer;
-outline: none;
-font-family: 'Livvic',
-sans-serif;
-border-radius: 45px; */
-
-
-     /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
-     /* color: #000; */
-     /* background-color: #fff; */
-     /* text-transform: uppercase; */
-     /* letter-spacing: 3px; */
  }
 
  /* https://css-tricks.com/almanac/properties/b/box-shadow/ */
@@ -126,49 +76,6 @@ border-radius: 45px; */
  .ui.green.buttons .button {
      background: #26c281;
  }
-
- /* @keyframes shake {
-
-     10%,
-     90% {
-         transform: translate3d(-11px, 0, 0);
-     }
-
-     20%,
-     80% {
-         transform: translate3d(12px, 0, 0);
-     }
-
-     30%,
-     50%,
-     70% {
-         transform: translate3d(-14px, 0, 0);
-     }
-
-     40%,
-     60% {
-         transform: translate3d(14px, 0, 0);
-     }
- } */
-
- /* .ui.button.button-theme.smaller {
-     width: 75% !important;
- }
-
- .ui.button.button-theme.shorter {
-     margin-top: 15px !important;
-     padding: 13px;
- }
-
- .ui.button.button-theme.orange {
-     background-color: #f15a22 !important;
-     box-shadow: 0px 15px 20px rgba(241, 90, 34, 0.4);
- }
-
- .ui.button.button-theme.red {
-     background-color: #ee5253 !important;
-     box-shadow: 0px 15px 20px rgba(231, 76, 60, 0.4);
- } */
 
  .green {
      color: green;
