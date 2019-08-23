@@ -3,7 +3,7 @@
 }
 
 .ui.button.button-theme {
-    background-color: #2ee59d;
+    background-color: #4ecdc4;
     box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
     color: #fff;
     padding: 15px;
@@ -15,7 +15,7 @@
     cursor: pointer;
     outline: none;
     font-family: 'Livvic', sans-serif;
-    /* border-radius: 45px; */
+    border-radius: 45px;
     /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
     /* color: #000; */
     /* background-color: #fff; */
@@ -24,8 +24,8 @@
 }
 
 .ui.button.button-theme:active {
-    background-color: #2EE59D;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    background-color: #03c9a9;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.3);
     color: #fff;
     /* transform: translateY(7px); */
     animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
@@ -68,8 +68,8 @@
 }
 
 .ui.button.button-theme.orange {
-    background-color: #f39c12 !important;
-    box-shadow: 0px 15px 20px rgba(243, 156, 18, .4);
+    background-color: #f15a22 !important;
+    box-shadow: 0px 15px 20px rgba(241, 90, 34, 0.4);
 }
 
 .ui.button.button-theme.red {
