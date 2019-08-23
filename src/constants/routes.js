@@ -9,6 +9,7 @@ export const MANAGE_USERS = "/manageUsers";
 export const MANAGE_EVENTS = "/manageEvents";
 export const CREATE_EVENT = "/manageEvents/create";
 export const VIEW_EVENT = "/manageEvents/view/:id";
+export const EDIT_EVENT = `/manageEvents/edit/:id`;
 
 export const EVENTS = "/events";
 export const POINTS = "/points";

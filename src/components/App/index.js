@@ -38,6 +38,7 @@ const App = () => (
     <Route exact path={ROUTES.MANAGE_EVENTS} component={ManageEvents} />
     <Route exact path={ROUTES.CREATE_EVENT} component={CreateEvent} />
     <Route path={ROUTES.VIEW_EVENT} component={ViewEvent} />
+    <Route path={ROUTES.EDIT_EVENT} component={CreateEvent} />
 
     {/* User Events */}
     <Route path={ROUTES.EVENTS} component={EventsPage} />

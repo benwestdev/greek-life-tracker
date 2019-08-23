@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import { Container, Divider, Header, Dimmer, Loader } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import {
+  Container,
+  Divider,
+  Header,
+  Dimmer,
+  Loader,
+  Grid,
+  Button
+} from "semantic-ui-react";
 
 import { withAuthorization } from "../Session";
 import * as ROLES from "../../constants/roles";
-import * as STATUSES from "../../constants/statuses";
+import * as ROUTES from "../../constants/routes";
 import { compose } from "recompose";
 import { withFirebase } from "../Firebase";
 import { EventDetailsView } from "./eventList";
@@ -39,10 +48,6 @@ class EventViewPage extends Component {
       });
   }
 
-  componentWillUnmount() {
-    // this.props.firebase.user(this.props.match.params.id).off();
-  }
-
   handleApproveReject = (attendanceUid, status) => {
     this.props.firebase
       .editAttendance(attendanceUid, { status })
@@ -70,6 +75,20 @@ class EventViewPage extends Component {
           </Dimmer>
         )}
         <EventDetailsView event={event} />
+        <Grid columns={2}>
+          <Grid.Column>
+            <Link to={ROUTES.MANAGE_EVENTS}>
+              <Button className="button-theme shorter orange" color="orange">
+                Back
+              </Button>
+            </Link>
+          </Grid.Column>
+          <Grid.Column>
+            <Link to={`/manageEvents/edit/${event.uid}`}>
+              <Button className="button-theme shorter">Edit{event.uid}</Button>
+            </Link>
+          </Grid.Column>
+        </Grid>
         <Divider />
         {attendances && (
           <ApprovalListSection

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -52,6 +53,15 @@ class CreateEventBase extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
+  componentDidMount() {
+    const eventUid = this.props.match.params.id;
+    if (eventUid) {
+      this.props.firebase.getEvent(eventUid).then(event => {
+        this.setState({ ...event });
+      });
+    }
+  }
+
   handleInputChange = (event, option) => {
     if (option) {
       this.setState({ [option.name]: option.value });
@@ -61,18 +71,30 @@ class CreateEventBase extends Component {
   };
 
   onSubmit = () => {
+    const eventUid = this.props.match.params.id;
     //TODO: add toast error handling & only grab event related fields from state when that happens
     const eventObject = this.state;
     console.log(eventObject);
-    this.props.firebase
-      .addEvent(eventObject)
-      .then(() => {
-        console.log("success");
-      })
-      .catch(error => {
-        console.log("error adding event: ", error);
-      });
-    this.setState({ ...INITIAL_STATE });
+    if (eventUid) {
+      this.props.firebase
+        .editEvent(eventUid, eventObject)
+        .then(response => {
+          this.props.history.push(ROUTES.MANAGE_EVENTS);
+        })
+        .catch(error => {
+          console.log("error editing event: ", error);
+        });
+    } else {
+      this.props.firebase
+        .addEvent(eventObject)
+        .then(() => {
+          console.log("success");
+        })
+        .catch(error => {
+          console.log("error adding event: ", error);
+        });
+      this.setState({ ...INITIAL_STATE });
+    }
   };
 
   render() {
@@ -203,6 +225,7 @@ class CreateEventBase extends Component {
 
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN];
 export default compose(
+  withRouter,
   withAuthorization(condition),
   withFirebase
 )(CreateEventBase);
