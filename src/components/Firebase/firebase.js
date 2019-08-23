@@ -173,7 +173,7 @@ class Firebase {
     this.firestore
       .collection("events")
       .doc(uid)
-      .set(eventObject)
+      .update(eventObject)
       .then(() => {
         console.log("Edit successful");
       })
