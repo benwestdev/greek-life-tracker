@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Dropdown } from "semantic-ui-react";
 
@@ -21,9 +21,14 @@ const NavigationAuth = ({ authUser }) => (
       <Menu.Item name="my account" />
     </Link>
     {!!authUser.roles[ROLES.STUDENT] && (
-      <Link to={ROUTES.EVENTS} name="events">
-        <Menu.Item name="events" />
-      </Link>
+      <Fragment>
+        <Link to={ROUTES.POINTS} name="points">
+          <Menu.Item name="my points" />
+        </Link>
+        <Link to={ROUTES.EVENTS} name="events">
+          <Menu.Item name="events" />
+        </Link>
+      </Fragment>
     )}
     {!!authUser.roles[ROLES.ADMIN] && (
       <Dropdown item text="Admin">

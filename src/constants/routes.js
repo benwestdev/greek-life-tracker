@@ -12,5 +12,6 @@ export const CREATE_EVENT = "/manageEvents/create";
 export const VIEW_EVENT = "/manageEvents/view/:id";
 
 export const EVENTS = "/events";
+export const POINTS = "/points";
 
 export const PASSWORD_FORGET = "/forgotPassword";
