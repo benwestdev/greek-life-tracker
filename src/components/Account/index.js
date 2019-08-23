@@ -143,8 +143,10 @@ const SocialLoginToggle = ({
 }) =>
   isEnabled ? (
     <Button
-      className="button-theme"
-      type="button"
+      fluid
+      basic
+      color="blue"
+      className="button-medium-width  pad-top"
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
     >
@@ -152,7 +154,10 @@ const SocialLoginToggle = ({
     </Button>
   ) : (
     <Button
-      className="button-theme"
+      fluid
+      basic
+      color="blue"
+      className="button-medium-width pad-top"
       type="button"
       onClick={() => onLink(signInMethod.provider)}
     >
@@ -187,8 +192,10 @@ class DefaultLoginToggle extends Component {
 
     return isEnabled ? (
       <Button
-        className="button-theme"
-        type="button"
+        fluid
+        basic
+        color="blue"
+        className="button-medium-width  pad-top"
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
       >
@@ -212,7 +219,9 @@ class DefaultLoginToggle extends Component {
         />
 
         <Button
-          className="button-theme"
+          basic
+          color="blue"
+          className="button-medium-width  pad-top"
           disabled={isInvalid}
           onClick={this.onSubmit}
         >
