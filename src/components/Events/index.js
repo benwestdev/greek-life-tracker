@@ -45,6 +45,7 @@ class EventsPage extends Component {
     const attendanceObject = {
       eventId: event.uid,
       eventName: event.name,
+      eventType: event.type,
       date: moment().format("LL"),
       userId: user.uid,
       username: user.username,
