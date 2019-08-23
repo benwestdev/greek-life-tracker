@@ -36,7 +36,7 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const { username, email, passwordOne, type } = this.state;
-    this.props.firebase
+    return this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
@@ -46,7 +46,16 @@ class SignUpFormBase extends Component {
         } else if (type === "faculty") {
           roles[ROLES.VIEWER] = ROLES.VIEWER;
         }
-        this.props.firebase.addUser({ username, email, roles });
+        console.log("on signin: ", authUser.user.uid);
+
+        this.props.firebase.firestore
+          .collection("users")
+          .doc(authUser.user.uid)
+          .set({
+            username,
+            email,
+            roles
+          });
       })
       .then(() => {
         this.setState({ ...INITIAL_STATE });
@@ -55,7 +64,6 @@ class SignUpFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
-    event.preventDefault();
   };
 
   onChange = event => {
