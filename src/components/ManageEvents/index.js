@@ -34,7 +34,11 @@ class ManageEventsPage extends Component {
 
   onDelete = uid => {
     console.log("deleting: ", uid);
-    this.props.firebase.event(uid).remove();
+    this.props.firebase.deleteEvent(uid).then(response => {
+      const events = this.state.events;
+      const newEvents = events.filter(event => uid !== event.uid);
+      this.setState({ events: newEvents });
+    });
   };
 
   componentWillUnmount() {

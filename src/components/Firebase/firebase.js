@@ -174,7 +174,7 @@ class Firebase {
   editEvent = (uid, eventObject) =>
     this.firestore
       .collection("events")
-      .doc("uid")
+      .doc(uid)
       .set(eventObject)
       .then(() => {
         console.log("Edit successful");
@@ -182,6 +182,12 @@ class Firebase {
       .catch(error => {
         console.log("Error updating event: ", uid, " ", error);
       });
+
+  deleteEvent = uid =>
+    this.firestore
+      .collection("events")
+      .doc(uid)
+      .delete();
 
   //** FIRESTORE ATTENDANCES API ***/
   getAttendances = () =>
