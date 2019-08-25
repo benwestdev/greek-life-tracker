@@ -2,6 +2,7 @@
      font-family: 'Quicksand', sans-serif !important;
  }
 
+
  i.icon {
      font-family: Icons !important;
  }
@@ -42,6 +43,15 @@
      -ms-transform: skew(8deg) rotate(3deg);
      -o-transform: skew(8deg) rotate(3deg);
      transform: skew(8deg) rotate(3deg);
+ }
+
+ .fade-in {
+     opacity: 0;
+ }
+
+ .fade-in.visible {
+     transition: opacity 1s ease-in;
+     opacity: 1;
  }
 
  .pad-top {
@@ -95,4 +105,22 @@
 
  .recharts-wrapper {
      margin: 0 auto;
+ }
+
+ .example-enter {
+     opacity: 0.01;
+ }
+
+ .example-enter.example-enter-active {
+     opacity: 1;
+     transition: opacity 500ms ease-in;
+ }
+
+ .example-leave {
+     opacity: 1;
+ }
+
+ .example-leave.example-leave-active {
+     opacity: 0.01;
+     transition: opacity 1000ms ease-in;
  }

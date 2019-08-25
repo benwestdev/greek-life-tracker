@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Header, Card, List, Button } from "semantic-ui-react";
+import WithAnimation from "../Animate";
 
 const EventList = ({ events, user, attendances, onAttend }) => (
   <Container style={{ marginTop: "40px" }}>
     <Card.Group centered>
       {events.map(event => (
         <EventItem
-          key={event.uid}
           event={event}
           user={user}
           onAttend={onAttend}
@@ -17,7 +17,7 @@ const EventList = ({ events, user, attendances, onAttend }) => (
   </Container>
 );
 
-const EventItem = ({ event, user, attendances, onAttend }) => (
+const EventItemBase = ({ event, user, attendances, onAttend }) => (
   <Card className="effect6">
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
@@ -87,3 +87,4 @@ const EventDetailsView = ({ event }) => {
 
 export default EventList;
 export { EventDetailsView };
+const EventItem = WithAnimation(EventItemBase);
