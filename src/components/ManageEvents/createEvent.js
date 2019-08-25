@@ -165,6 +165,7 @@ class CreateEventBase extends Component {
               dateFormat="MM-DD-YYYY"
               closable={true}
               autoComplete="off"
+              hideMobileKeyboard
             />
           </Form.Field>
           <Form.Field>
@@ -177,6 +178,7 @@ class CreateEventBase extends Component {
               onChange={this.handleInputChange}
               timeFormat="AMPM"
               autoComplete="off"
+              hideMobileKeyboard
             />
           </Form.Field>
           <Form.Field>
@@ -189,6 +191,7 @@ class CreateEventBase extends Component {
               onChange={this.handleInputChange}
               timeFormat="AMPM"
               autoComplete="off"
+              hideMobileKeyboard
             />
           </Form.Field>
           <Form.Field>
