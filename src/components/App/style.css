@@ -124,3 +124,11 @@
      opacity: 0.01;
      transition: opacity 1000ms ease-in;
  }
+
+ .card-container {
+     margin-top: 40px !important;
+ }
+
+ .card-list-margin {
+     margin-bottom: 25px !important;
+ }
