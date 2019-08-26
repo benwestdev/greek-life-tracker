@@ -1,5 +1,4 @@
 import React from "react";
-import { Container } from "semantic-ui-react";
 
 import { withAuthorization } from "../Session";
 import Points from "../Points";
@@ -14,7 +13,6 @@ const HomePage = ({ authUser }) => {
   if (authUser.roles.hasOwnProperty(ROLES.ADMIN)) {
     return <AdminHomePage />;
   } else if (authUser.roles.hasOwnProperty(ROLES.VIEWER)) {
-    console.log("its hitting this one");
     return <ViewerHomePage />;
   } else {
     return <StudentHomePage />;
