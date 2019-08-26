@@ -3,7 +3,7 @@ import { Container, Header, Card, List, Button } from "semantic-ui-react";
 import WithAnimation from "../Animate";
 
 const EventList = ({ events, user, attendances, onAttend }) => (
-  <Container style={{ marginTop: "40px" }}>
+  <Container className="card-container">
     <Card.Group centered>
       {events.map(event => (
         <EventItem
@@ -18,7 +18,7 @@ const EventList = ({ events, user, attendances, onAttend }) => (
 );
 
 const EventItemBase = ({ event, user, attendances, onAttend }) => (
-  <Card className="effect6">
+  <Card className="effect6 card-list-margin">
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
       <Card.Meta content={event.type} />
