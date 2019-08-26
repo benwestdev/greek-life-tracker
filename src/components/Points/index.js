@@ -16,7 +16,6 @@ class PointsPage extends Component {
   }
 
   componentDidMount() {
-    console.log("pointmap: ", this.state.pointMap);
     this.props.firebase
       .getAttendanceByUser(this.props.authUser.uid)
       .then(attendances => {
