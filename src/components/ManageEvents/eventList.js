@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Header, Card, List, Button, Grid } from "semantic-ui-react";
+import { Container, Header, Card, List, Button } from "semantic-ui-react";
+
+import WithAnimation from "../Animate";
 
 const EventList = ({ events, onDelete }) => (
   <Container style={{ marginTop: "40px" }}>
@@ -12,8 +14,8 @@ const EventList = ({ events, onDelete }) => (
   </Container>
 );
 
-const EventItem = ({ event, onDelete }) => (
-  <Card className="effect6">
+const EventItemBase = ({ event, onDelete }) => (
+  <Card className="effect6 card-list-margin">
     <Card.Content>
       <Card.Header>{event.name}</Card.Header>
       <Card.Meta content={event.type} />
@@ -81,3 +83,4 @@ const EventDetailsView = ({ event }) => {
 
 export default EventList;
 export { EventDetailsView };
+const EventItem = WithAnimation(EventItemBase);
