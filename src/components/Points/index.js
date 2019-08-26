@@ -16,11 +16,11 @@ class PointsPage extends Component {
   }
 
   componentDidMount() {
+    console.log("pointmap: ", this.state.pointMap);
     this.props.firebase
       .getAttendanceByUser(this.props.authUser.uid)
       .then(attendances => {
-        console.log(attendances);
-        let pointMap = STATUSES.EVENT_TYPES_MAP;
+        let pointMap = Object.assign({}, STATUSES.EVENT_TYPES_MAP);
         attendances.forEach(attendance => {
           console.log({ attendance });
           if (attendance.status === STATUSES.APPROVED) {
@@ -61,24 +61,26 @@ const EventAttendance = ({ attendances }) => (
               <Card.Meta content={attendance.eventType} />
               <Card.Description>
                 <p>{moment(attendance.date).format("LL")}</p>
-                {attendance.status.toLowerCase() === "approved" && (
-                  <p className="green status-big">{attendance.status}</p>
-                )}
-                {attendance.status.toLowerCase() === "pending approval" && (
-                  <p className="orange status-big">{attendance.status}</p>
-                )}
-                {attendance.status.toLowerCase() === "rejected" && (
-                  <p className="red status-big">{attendance.status}</p>
-                )}
-                {attendance.status.toLowerCase() === "approved" && (
-                  <p className="green big-points">{attendance.points}</p>
-                )}
-                {attendance.status.toLowerCase() === "pending approval" && (
-                  <p className="orange big-points">{attendance.points}</p>
-                )}
-                {attendance.status.toLowerCase() === "rejected" && (
-                  <p className="red big-points">{attendance.points}</p>
-                )}
+                <div>
+                  {attendance.status === STATUSES.APPROVED && (
+                    <p className="green status-big">{attendance.status}</p>
+                  )}
+                  {attendance.status === STATUSES.PENDING && (
+                    <p className="orange status-big">{attendance.status}</p>
+                  )}
+                  {attendance.status === STATUSES.DENIED && (
+                    <p className="red status-big">{attendance.status}</p>
+                  )}
+                  {attendance.status === STATUSES.APPROVED && (
+                    <p className="green big-points">{attendance.points}</p>
+                  )}
+                  {attendance.status === STATUSES.PENDING && (
+                    <p className="orange big-points">{attendance.points}</p>
+                  )}
+                  {attendance.statua === STATUSES.DENIED && (
+                    <p className="red big-points">{attendance.points}</p>
+                  )}
+                </div>
               </Card.Description>
             </Card.Content>
           </Card>
