@@ -9,6 +9,4 @@ deploy:
   project: $REACT_APP_PROJECT_ID
 on:
   repo: benwestdev/greek-life-tracker
-  branches: # ← new!
-    only: # ← new!
-      - develop # ← new!
+  branches: develop
