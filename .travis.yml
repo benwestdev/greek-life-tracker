@@ -1,7 +1,9 @@
 language: node_js
 node_js: lts/*
+
 on:
   all_branches: true
+
 deploy:
   provider: firebase
   project: "greek-life-tracker"
