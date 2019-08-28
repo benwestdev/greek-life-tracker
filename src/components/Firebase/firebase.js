@@ -7,9 +7,9 @@ import { firebase } from "../../config";
 
 // const config = process.env.NODE_ENV === "production" ? PROD_CONFIG : DEV_CONFIG;
 const config = firebase;
-console.log("config here: ", config);
 class Firebase {
   constructor() {
+    console.log("config here: ", config);
     console.log("this is new2");
     app.initializeApp(config);
 
