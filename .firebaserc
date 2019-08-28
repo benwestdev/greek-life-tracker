@@ -1,5 +1,18 @@
 {
     "projects": {
         "develop": "greek-life-tracker" 
+    },
+    "ci": {
+        "createConfig": {
+            "develop": {
+                "firebase": {
+                    "apiKey": "${FIREBASE_API_KEY}",
+                    "authDomain": "greek-life-tracker.firebaseapp.com",
+                    "databaseURL": "ttps://greek-life-tracker.firebaseio.com",
+                    "projectId": "greek-life-tracker",
+                    "storageBucket": "life-tracker.appspot.com"
+                }
+            }
+        }
     }
 }
