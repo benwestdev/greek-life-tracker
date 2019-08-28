@@ -2,7 +2,7 @@ language: node_js
 node_js: lts/*
 
 on:
-  all_branches: true
+  branch: develop
 
 deploy:
   provider: firebase
