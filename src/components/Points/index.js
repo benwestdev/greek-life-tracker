@@ -21,7 +21,6 @@ class PointsPage extends Component {
       .then(attendances => {
         let pointMap = Object.assign({}, STATUSES.EVENT_TYPES_MAP);
         attendances.forEach(attendance => {
-          console.log({ attendance });
           if (attendance.status === STATUSES.APPROVED) {
             if (pointMap.hasOwnProperty(attendance.eventType)) {
               pointMap[attendance.eventType] += Number(attendance.points);
