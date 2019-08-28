@@ -2,7 +2,7 @@ language: node_js
 node_js: lts/*
 
 install: true
-
+script: echo $REACT_APP_PROJECT_ID
 deploy:
   provider: firebase
   project: "greek-life-tracker"
