@@ -10,7 +10,6 @@ const config = firebase;
 class Firebase {
   constructor() {
     console.log("config here: ", config);
-    console.log("this is new2");
     app.initializeApp(config);
 
     this.auth = app.auth();
