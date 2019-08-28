@@ -13,16 +13,16 @@
                     "projectId": "greekwise-qa",
                     "appId": "1:700829046325:web:2103ec93d1ed7bfa"
                 }
-            }
-        },
-        "master": {
-            "firebase": {
-                "apiKey": "${FIREBASE_API_KEY_PRODUCTION}",
-                "authDomain": "greekwise-production.firebaseapp.com",
-                "databaseURL": "https://greekwise-production.firebaseio.com",
-                "projectId": "greekwise-production",
-                "appId": "1:85624761537:web:7cf7269bbf16850f"
+            },
+            "master": {
+                "firebase": {
+                    "apiKey": "${FIREBASE_API_KEY_PRODUCTION}",
+                    "authDomain": "greekwise-production.firebaseapp.com",
+                    "databaseURL": "https://greekwise-production.firebaseio.com",
+                    "projectId": "greekwise-production",
+                    "appId": "1:85624761537:web:7cf7269bbf16850f"
 
+                }
             }
         }
     }
