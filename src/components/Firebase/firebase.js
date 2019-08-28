@@ -4,9 +4,8 @@ import "firebase/database";
 import "firebase/firestore";
 
 import { firebase } from "../../config";
-
-// const config = process.env.NODE_ENV === "production" ? PROD_CONFIG : DEV_CONFIG;
 const config = firebase;
+
 class Firebase {
   constructor() {
     console.log("config here: ", config);
