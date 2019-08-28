@@ -9,6 +9,7 @@ const config = process.env.NODE_ENV === "production" ? PROD_CONFIG : DEV_CONFIG;
 
 class Firebase {
   constructor() {
+    console.log("this is new");
     app.initializeApp(config);
 
     this.auth = app.auth();
