@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Header, Container } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 
-import { PieChart, Pie, Cell, PolarRadiusAxis, Radar, Legend } from "recharts";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
 const COLORS = ["#00b16a", "#d64541", "#ffcb05", "#f39c12"];
 
