@@ -3,7 +3,7 @@ node_js: lts/*
 
 before_deploy: 
   "npm install"
-  "CI=false npm run build"
+  "process.env.CI=false npm run build"
 deploy:
   provider: firebase
   project: "greek-life-tracker"
