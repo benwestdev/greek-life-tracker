@@ -1,6 +1,7 @@
 {
     "projects": {
-        "develop": "greekwise-qa" 
+        "develop": "greekwise-qa",
+        "master": "greekwise-production" 
     },
     "ci": {
         "createConfig": {
@@ -16,11 +17,12 @@
         },
         "master": {
             "firebase": {
-                "apiKey": "${FIREBASE_API_KEY}",
-                "authDomain": "greek-life-tracker.firebaseapp.com",
-                "databaseURL": "ttps://greek-life-tracker.firebaseio.com",
-                "projectId": "greek-life-tracker",
-                "storageBucket": "life-tracker.appspot.com"
+                "apiKey": "${FIREBASE_API_KEY_PRODUCTION}",
+                "authDomain": "greekwise-production.firebaseapp.com",
+                "databaseURL": "https://greekwise-production.firebaseio.com",
+                "projectId": "greekwise-production",
+                "appId": "1:85624761537:web:7cf7269bbf16850f"
+
             }
         }
     }
