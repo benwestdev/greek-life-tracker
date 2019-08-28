@@ -6,13 +6,24 @@
         "createConfig": {
             "develop": {
                 "firebase": {
-                    "apiKey": "${FIREBASE_API_KEY}",
-                    "authDomain": "greek-life-tracker.firebaseapp.com",
-                    "databaseURL": "ttps://greek-life-tracker.firebaseio.com",
-                    "projectId": "greek-life-tracker",
-                    "storageBucket": "life-tracker.appspot.com"
+                    "apiKey": "${FIRE_BASE_API_KEY_QA}",
+                    "authDomain": "greekwise-qa.firebaseapp.com",
+                    "databaseURL": "https://greekwise-qa.firebaseio.com",
+                    "projectId": "greekwise-qa",
+                    "storageBucket": "life-tracker.appspot.com",
+                    "appId": "1:700829046325:web:2103ec93d1ed7bfa"
                 }
+            }
+        },
+        "master": {
+            "firebase": {
+                "apiKey": "${FIREBASE_API_KEY}",
+                "authDomain": "greek-life-tracker.firebaseapp.com",
+                "databaseURL": "ttps://greek-life-tracker.firebaseio.com",
+                "projectId": "greek-life-tracker",
+                "storageBucket": "life-tracker.appspot.com"
             }
         }
     }
 }
+
