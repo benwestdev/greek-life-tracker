@@ -7,7 +7,7 @@
         "createConfig": {
             "develop": {
                 "firebase": {
-                    "apiKey": "${FIRE_BASE_API_KEY_QA}",
+                    "apiKey": "${FIREBASE_API_KEY_QA}",
                     "authDomain": "greekwise-qa.firebaseapp.com",
                     "databaseURL": "https://greekwise-qa.firebaseio.com",
                     "projectId": "greekwise-qa",
