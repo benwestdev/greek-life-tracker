@@ -1,6 +1,6 @@
 {
     "projects": {
-        "develop": "greek-life-tracker" 
+        "develop": "greekwise-qa" 
     },
     "ci": {
         "createConfig": {
@@ -10,7 +10,6 @@
                     "authDomain": "greekwise-qa.firebaseapp.com",
                     "databaseURL": "https://greekwise-qa.firebaseio.com",
                     "projectId": "greekwise-qa",
-                    "storageBucket": "life-tracker.appspot.com",
                     "appId": "1:700829046325:web:2103ec93d1ed7bfa"
                 }
             }
