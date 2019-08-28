@@ -4,6 +4,8 @@ install: true
 script: echo $REACT_APP_PROJECT_ID
 deploy:
   provider: firebase
+  project: "greek-life-tracker"
   token:
     secure: "urTCZiQVjZPVX+i38YOEJLv5xI5+ePV+AeMjXinOKgxPFEO9jgQwFiCJk7f9Zsao2eTQdC6gQFrPqKGNyafoewizws8Y8lo4S4bvw/tgA2GBtmxJpjJg340/75iCJIk5BRJ7hMoQYufN1bef5UWr/iMVAJISaRwEPYmS5YWYxGrCARA68JUiQwav9buqV5Yx0TCnkum1P0MkHkY2IhBQ1B0siqJVOer+1W6SWF77tI8He8Hxnb5SzsYB0MR29lhjkdouRKb23/KHn7FGNM5gXVqi+G+7w9rB2Ji6JQp9fSAnf3Em4bim1SYh7rM9Mqj09JLm8XEgcf7j3tRyMLTVfXbNCEAvrSgdQ27weQUk7IoIf2zPJhCdfQEKr/uk7PsMsxKEtqf9+b8gcUz/NNV4SUsMAe3JrwmutvCbBqvbMbSEvvtxQ7Uh7TbIFs3FQGYX6yKsSBPWaFrtDzLPU9Qrgh5bruSMwwOL/316abWrbkkZyjMU+TzG9IdxuZWmFWz3L5dRcWTmJs2nWRDy6rZBtcmgnFaoAk3B+PjD2i17k8A5BJ4IMjuioAmuHetrdhNrbJBvq5EZ2xIbPPAYTF7EsRedN3j3ntfL4PTujE3Ucdv8bmq8+uYUd2XtFBzn8O0rx+9mvZYm+94fZBjEdiJR4va2pPVnuALthE3pq0qWmKU="
-  project: "greek-life-tracker"
+  on:
+    branches: "develop"
