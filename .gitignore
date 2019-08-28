@@ -27,3 +27,5 @@ yarn-error.log*
 
 #firebase deployment cache
 hosting.*.cache
+
+yarn.lock
