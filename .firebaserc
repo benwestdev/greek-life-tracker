@@ -1,7 +1,8 @@
 {
     "projects": {
         "develop": "greekwise-qa",
-        "master": "greekwise-production" 
+        "master": "greekwise-production",
+        "default": "greekwise-production"
     },
     "ci": {
         "createConfig": {
