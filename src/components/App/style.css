@@ -132,3 +132,7 @@
  .card-list-margin {
      margin-bottom: 25px !important;
  }
+
+ .ui.card {
+     margin: 1em 15px;
+ }
