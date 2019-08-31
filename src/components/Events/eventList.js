@@ -1,12 +1,21 @@
 import React from "react";
-import { Container, Header, Card, List, Button } from "semantic-ui-react";
+import {
+  Container,
+  Card,
+  List,
+  Button,
+  Icon,
+  Popup
+} from "semantic-ui-react";
 import WithAnimation from "../Animate";
+import { TODAY } from "../../constants/statuses";
 
 const EventList = ({ events, user, attendances, onAttend }) => (
   <Container className="card-container">
     <Card.Group centered>
       {events.map(event => (
         <EventItem
+          key={event.uid}
           event={event}
           user={user}
           onAttend={onAttend}
@@ -18,8 +27,25 @@ const EventList = ({ events, user, attendances, onAttend }) => (
 );
 
 const EventItemBase = ({ event, user, attendances, onAttend }) => (
-  <Card className="effect6 card-list-margin">
-    <Card.Content>
+    <Card className="effect6 card-list-margin">
+  <Card.Content>
+      {event.date === TODAY && (
+        <Popup
+          content="Event is happening today!"
+          position="top center"
+          style={{ float: "right" }}
+          basic
+          on="hover"
+          trigger={
+            <Icon
+              style={{ float: "right", color: "orange" }}
+              name="star"
+              size="big"
+            />
+          }
+        />
+      )}
+
       <Card.Header>{event.name}</Card.Header>
       <Card.Meta content={event.type} />
       <Card.Description>
@@ -56,7 +82,7 @@ const EventDetailsView = ({ event }) => {
   const endTime = event.endTime || "???";
   return (
     <Container>
-      <Header as="h3">Event Info</Header>
+      {/* <Header as="h3">Event Info</Header> */}
       <List>
         <List.Item>
           <List.Icon name="group" />
