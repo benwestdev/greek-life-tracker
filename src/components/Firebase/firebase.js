@@ -3,12 +3,14 @@ import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
 
+import moment from "moment";
+
 import { firebase } from "../../config";
+
 const config = firebase;
 
 class Firebase {
   constructor() {
-    console.log("config here: ", config);
     app.initializeApp(config);
 
     this.auth = app.auth();
@@ -89,7 +91,6 @@ class Firebase {
         querySnapshot.forEach(doc => {
           users.push({ uid: doc.id, ...doc.data() });
         });
-        console.log({ users });
         return users;
       });
 
@@ -140,9 +141,45 @@ class Firebase {
         querySnapshot.forEach(doc => {
           events.push({ uid: doc.id, ...doc.data() });
         });
-        console.log({ events });
         return events;
       });
+
+  getEventsPaginated = (lastRef, includePastEvents) => {
+    const today = moment().format("MM-DD-YYYY");
+    if (lastRef) {
+      if (includePastEvents) {
+        return this.firestore
+          .collection("events")
+          .orderBy("date", "desc")
+          .limit(1)
+          .startAfter(lastRef)
+          .get();
+      } else {
+        return this.firestore
+          .collection("events")
+          .where("date", ">=", today)
+          .orderBy("date", "desc")
+          .limit(1)
+          .startAfter(lastRef)
+          .get();
+      }
+    } else {
+      if (includePastEvents) {
+        return this.firestore
+          .collection("events")
+          .orderBy("date", "desc")
+          .limit(1)
+          .get();
+      } else {
+        return this.firestore
+          .collection("events")
+          .where("date", ">=", today)
+          .orderBy("date", "desc")
+          .limit(1)
+          .get();
+      }
+    }
+  };
 
   getEvent = uid =>
     this.firestore
@@ -197,7 +234,6 @@ class Firebase {
         querySnapshot.forEach(doc => {
           attendances.push({ uid: doc.id, ...doc.data() });
         });
-        console.log({ attendances });
         return attendances;
       });
 
@@ -225,7 +261,6 @@ class Firebase {
         querySnapshot.forEach(doc => {
           attendances.push({ uid: doc.id, ...doc.data() });
         });
-        console.log({ attendances });
         return attendances;
       })
       .catch(error => {
