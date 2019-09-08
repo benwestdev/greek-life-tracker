@@ -2,7 +2,6 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import "firebase/firestore";
-
 import moment from "moment";
 
 import { firebase } from "../../config";
@@ -137,11 +136,24 @@ class Firebase {
       .collection("events")
       .get()
       .then(querySnapshot => {
+        console.log("firebase");
         const events = [];
         querySnapshot.forEach(doc => {
           events.push({ uid: doc.id, ...doc.data() });
         });
         return events;
+      });
+
+  getEventsWithCallback = callback =>
+    this.firestore
+      .collection("events")
+      .get()
+      .then(querySnapshot => {
+        const events = [];
+        querySnapshot.forEach(doc => {
+          events.push({ uid: doc.id, ...doc.data() });
+        });
+        return callback(events);
       });
 
   getEventsPaginated = (lastRef, includePastEvents) => {
@@ -307,4 +319,4 @@ class Firebase {
       });
 }
 
-export default Firebase;
+export default new Firebase();

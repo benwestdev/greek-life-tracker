@@ -10,7 +10,7 @@ import * as Util from "../../utils";
 import * as ROLES from "../../constants/roles";
 import * as STATUSES from "../../constants/statuses";
 
-import EventList from "./eventList";
+import EventList from "./EventList";
 
 class EventsPage extends Component {
   constructor(props) {
@@ -110,13 +110,7 @@ class EventsPage extends Component {
   };
 
   render() {
-    const {
-      events,
-      attendances,
-      includePastEvents,
-      loading,
-      hasMore
-    } = this.state;
+    const { events, attendances, includePastEvents, loading } = this.state;
     const filteredEvents = includePastEvents
       ? events
       : events.filter(event => event.date >= STATUSES.TODAY);

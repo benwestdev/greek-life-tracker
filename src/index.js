@@ -5,11 +5,11 @@ import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
 
-import Firebase, { FirebaseContext } from "./components/Firebase";
+import Firebase, { FirebaseContext } from "./components/Firebase/";
 import App from "./components/App";
 
 ReactDOM.render(
-  <FirebaseContext.Provider value={new Firebase()}>
+  <FirebaseContext.Provider value={Firebase}>
     <App />
   </FirebaseContext.Provider>,
   document.getElementById("root")
