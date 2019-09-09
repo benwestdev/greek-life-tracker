@@ -25,8 +25,7 @@ class PasswordChangeFormBase extends Component {
 
   onSubmit = event => {
     const { passwordOne } = this.state;
-    this.props.firebase
-      .doPasswordUpdate(passwordOne)
+    this.props.firebase.AuthApi.doPasswordUpdate(passwordOne)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })

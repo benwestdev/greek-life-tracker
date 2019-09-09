@@ -25,8 +25,7 @@ class SignInFacebookBase extends Component {
     this.state = { error: null };
   }
   onSubmit = () => {
-    this.props.firebase
-      .doSignInWithFacebook()
+    this.props.firebase.AuthApi.doSignInWithFacebook()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
         this.props.firebase.firestore

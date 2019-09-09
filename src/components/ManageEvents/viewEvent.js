@@ -33,13 +33,12 @@ class EventViewPage extends Component {
     this.setState({ loading: true });
     const eventUid = this.props.match.params.id;
     //TODO: add toast error handling & only grab event related fields from state when that happens
-    this.props.firebase.getEvent(eventUid).then(event => {
+    this.props.firebase.eventApi.getEvent(eventUid).then(event => {
       this.setState({
         event
       });
     });
-    this.props.firebase
-      .getAttendancesByEvent(eventUid)
+    this.props.firebase.AttendanceApi.getAttendancesByEvent(eventUid)
       .then(attendances => {
         this.setState({ attendances, loading: false });
       })
@@ -49,17 +48,17 @@ class EventViewPage extends Component {
   }
 
   handleApproveReject = (attendanceUid, status) => {
-    this.props.firebase
-      .editAttendance(attendanceUid, { status })
-      .then(response => {
-        const attendances = this.state.attendances;
-        attendances.forEach(att => {
-          if (att.uid === attendanceUid) {
-            att.status = status;
-          }
-        });
-        this.setState({ attendances });
+    this.props.firebase.AttendanceApi.editAttendance(attendanceUid, {
+      status
+    }).then(response => {
+      const attendances = this.state.attendances;
+      attendances.forEach(att => {
+        if (att.uid === attendanceUid) {
+          att.status = status;
+        }
       });
+      this.setState({ attendances });
+    });
   };
 
   render() {

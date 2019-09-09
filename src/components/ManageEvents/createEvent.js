@@ -56,7 +56,7 @@ class CreateEventBase extends Component {
   componentDidMount() {
     const eventUid = this.props.match.params.id;
     if (eventUid) {
-      this.props.firebase.getEvent(eventUid).then(event => {
+      this.props.firebase.EventApi.getEvent(eventUid).then(event => {
         this.setState({ ...event });
       });
     }
@@ -76,8 +76,7 @@ class CreateEventBase extends Component {
     const eventObject = this.state;
     console.log(eventObject);
     if (eventUid) {
-      this.props.firebase
-        .editEvent(eventUid, eventObject)
+      this.props.firebase.EventApi.editEvent(eventUid, eventObject)
         .then(response => {
           this.props.history.push(ROUTES.MANAGE_EVENTS);
         })
@@ -85,8 +84,7 @@ class CreateEventBase extends Component {
           console.log("error editing event: ", error);
         });
     } else {
-      this.props.firebase
-        .addEvent(eventObject)
+      this.props.firebase.EventApi.addEvent(eventObject)
         .then(() => {
           console.log("success");
         })

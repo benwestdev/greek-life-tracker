@@ -42,8 +42,10 @@ class EventsPage extends Component {
   loadEvents = () => {
     this.setState({ loading: true }, () => {
       const { lastEventFetched, includePastEvents } = this.state;
-      this.props.firebase
-        .getEventsPaginated(lastEventFetched, includePastEvents)
+      this.props.firebase.EventApi.getEventsPaginated(
+        lastEventFetched,
+        includePastEvents
+      )
         .then(querySnapshot => {
           let lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
           if (!lastVisible) {
@@ -95,8 +97,7 @@ class EventsPage extends Component {
       points: event.points,
       status: STATUSES.PENDING
     };
-    this.props.firebase
-      .addAttendance(attendanceObject)
+    this.props.firebase.AttendanceApi.addAttendance(attendanceObject)
       .then(response => {
         const attendances = this.state.attendances;
         attendances.push(attendanceObject);

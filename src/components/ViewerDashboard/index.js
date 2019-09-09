@@ -42,7 +42,7 @@ class ViewerDashboard extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
-    this.props.firebase.getAttendances().then(attendances => {
+    this.props.firebase.AttendanceApi.getAttendances().then(attendances => {
       this.structureData(attendances);
     });
   }

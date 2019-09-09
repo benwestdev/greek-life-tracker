@@ -36,8 +36,10 @@ class SignUpFormBase extends Component {
 
   onSubmit = () => {
     const { username, email, passwordOne, type } = this.state;
-    return this.props.firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+    return this.props.firebase.AuthApi.doCreateUserWithEmailAndPassword(
+      email,
+      passwordOne
+    )
       .then(authUser => {
         // Create a user in your Firebase realtime database
         const roles = {};

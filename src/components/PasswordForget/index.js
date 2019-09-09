@@ -30,8 +30,7 @@ class PasswordForgetFormBase extends Component {
   onSubmit = () => {
     const { email } = this.state;
 
-    this.props.firebase
-      .doPasswordReset(email)
+    this.props.firebase.AuthApi.doPasswordReset(email)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
       })

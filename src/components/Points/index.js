@@ -16,19 +16,19 @@ class PointsPage extends Component {
   }
 
   componentDidMount() {
-    this.props.firebase
-      .getAttendanceByUser(this.props.authUser.uid)
-      .then(attendances => {
-        let pointMap = Object.assign({}, STATUSES.EVENT_TYPES_MAP);
-        attendances.forEach(attendance => {
-          if (attendance.status === STATUSES.APPROVED) {
-            if (pointMap.hasOwnProperty(attendance.eventType)) {
-              pointMap[attendance.eventType] += Number(attendance.points);
-            }
+    this.props.firebase.AttendanceApi.getAttendanceByUser(
+      this.props.authUser.uid
+    ).then(attendances => {
+      let pointMap = Object.assign({}, STATUSES.EVENT_TYPES_MAP);
+      attendances.forEach(attendance => {
+        if (attendance.status === STATUSES.APPROVED) {
+          if (pointMap.hasOwnProperty(attendance.eventType)) {
+            pointMap[attendance.eventType] += Number(attendance.points);
           }
-        });
-        this.setState({ attendances, pointMap });
+        }
       });
+      this.setState({ attendances, pointMap });
+    });
   }
 
   render() {

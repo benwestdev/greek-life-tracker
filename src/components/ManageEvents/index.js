@@ -22,8 +22,7 @@ class ManageEventsPage extends Component {
   componentDidMount() {
     this.setState({ loading: true });
     //TODO: add toast error handling & only grab event related fields from state when that happens
-    this.props.firebase
-      .getEvents()
+    this.props.firebase.EventApi.getEvents()
       .then(events => {
         this.setState({ events, loading: false });
       })
@@ -34,7 +33,7 @@ class ManageEventsPage extends Component {
 
   onDelete = uid => {
     console.log("deleting: ", uid);
-    this.props.firebase.deleteEvent(uid).then(response => {
+    this.props.firebase.EventApi.deleteEvent(uid).then(response => {
       const events = this.state.events;
       const newEvents = events.filter(event => uid !== event.uid);
       this.setState({ events: newEvents });

@@ -4,12 +4,12 @@ import { Icon } from "semantic-ui-react";
 import { withFirebase } from "../Firebase";
 
 const SignOutButton = ({ firebase }) => (
-  <Icon name="sign-out" onClick={firebase.doSignOut} />
+  <Icon name="sign-out" onClick={firebase.AuthApi.doSignOut} />
 );
 
 class SignOutBase extends Component {
   componentDidMount() {
-    this.props.firebase.doSignOut();
+    this.props.firebase.AuthApi.doSignOut();
   }
   render() {
     return <h1>Singing out</h1>;

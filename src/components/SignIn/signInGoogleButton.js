@@ -25,8 +25,7 @@ class SignInGoogleBase extends Component {
     this.state = { error: null };
   }
   onSubmit = () => {
-    return this.props.firebase
-      .doSignInWithGoogle()
+    return this.props.firebase.AuthApi.doSignInWithGoogle()
       .then(socialAuthUser => {
         this.props.firebase.firestore
           .collection("users")

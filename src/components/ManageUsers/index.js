@@ -20,7 +20,7 @@ class ManageUsersPage extends Component {
   componentDidMount() {
     this.setState({ loading: true });
 
-    this.props.firebase.getUsers().then(users => {
+    this.props.firebase.UserApi.getUsers().then(users => {
       this.setState({ users, loading: false });
     });
   }
@@ -32,8 +32,7 @@ class ManageUsersPage extends Component {
       userObject.roles[status] = status;
     }
 
-    this.props.firebase
-      .editUser(userObject.uid, userObject)
+    this.props.firebase.UserApi.editUser(userObject.uid, userObject)
       .then(response => {
         const users = this.state.users;
         users.forEach(user => {
