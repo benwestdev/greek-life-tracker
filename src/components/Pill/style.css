@@ -1,0 +1,23 @@
+.pill {
+    border-radius: 25px;
+    display: inline;
+    padding: 7px 15px;
+    /* background-color: #1f88be; */
+    background-image: linear-gradient(to right top, #0b3d88, #1e388e, #313092, #442594, #571093) !important;
+
+    margin-right: 8px;
+    color: white;
+    font-weight: 800;
+}
+
+.pill:focus {
+    outline: none;
+}
+
+.pill:hover {
+    cursor: pointer;
+}
+
+.pill:disabled {
+    opacity: .5;
+}

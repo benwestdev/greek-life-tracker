@@ -1,9 +1,47 @@
+import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 import moment from "moment";
 
-const getEvents = () =>
+const useGetEvents = timeFrame => {
+  const dateCriteria = buildDateRangeCriteria(timeFrame);
+
+  const [events, setEvents] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const events = await getEvents(dateCriteria);
+        setEvents(events);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+        setError("Unable to retrieve events");
+        setEvents([]);
+      }
+    };
+    fetchEvents();
+  }, [timeFrame]);
+  return { events, isLoading, error };
+};
+
+const buildDateRangeCriteria = timeFrame => {
+  const start = moment().startOf(timeFrame);
+  const end = moment().endOf(timeFrame);
+
+  const startDate = moment(start).format("MM-DD-YYYY");
+  const endDate = moment(end).format("MM-DD-YYYY");
+  return {
+    startDate,
+    endDate
+  };
+};
+const getEvents = dateCriteria =>
   firebase.firestore
     .collection("events")
+    .where("date", ">=", dateCriteria.startDate)
+    .where("date", "<=", dateCriteria.endDate)
     .get()
     .then(querySnapshot => {
       const events = [];
@@ -94,10 +132,12 @@ const deleteEvent = uid =>
     .delete();
 
 export default {
+  useGetEvents,
   getEvents,
   getEventsPaginated,
   getEvent,
   addEvent,
   editEvent,
-  deleteEvent
+  deleteEvent,
+  buildDateRangeCriteria
 };

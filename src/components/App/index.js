@@ -17,6 +17,7 @@ import ManageEvents from "../ManageEvents";
 import CreateEvent from "../ManageEvents/createEvent";
 import ViewEvent from "../ManageEvents/viewEvent";
 import EventsPage from "../Events";
+import NewEventsPage from "../../pages/Events";
 import PointsPage from "../Points";
 import { SignOut } from "../SignOut";
 
@@ -41,8 +42,9 @@ const App = () => (
     <Route path={ROUTES.EDIT_EVENT} component={CreateEvent} />
 
     {/* User Events */}
-    <Route path={ROUTES.EVENTS} component={EventsPage} />
+    <Route path={ROUTES.EVENTS} component={NewEventsPage} />
     <Route path={ROUTES.POINTS} component={PointsPage} />
+    {/* <Route path={"/newEvents"} component={NewEventsPage} /> */}
   </Router>
 );
 export default withAuthentication(App);
