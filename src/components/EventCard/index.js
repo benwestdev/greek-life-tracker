@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Transition,
-  Modal,
-  Button,
-  Image,
-  Icon
-} from "semantic-ui-react";
+import { Card, Transition, Modal, Image, Icon } from "semantic-ui-react";
 import { withFirebase } from "../../components/Firebase";
 import { withAuthorization } from "../../components/Session";
 import { compose } from "recompose";

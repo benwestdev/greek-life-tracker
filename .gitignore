@@ -29,3 +29,5 @@ yarn-error.log*
 hosting.*.cache
 yarn.lock
 src/config.js
+
+src/theme

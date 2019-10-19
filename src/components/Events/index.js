@@ -91,14 +91,14 @@ class EventsPage extends Component {
       eventId: event.uid,
       eventName: event.name,
       eventType: event.type,
-      date: moment().format("LL"),
+      date: moment(new Date()).format("LL"),
       userId: user.uid,
       username: user.username,
       points: event.points,
       status: STATUSES.PENDING
     };
     this.props.firebase.AttendanceApi.addAttendance(attendanceObject)
-      .then(response => {
+      .then(() => {
         const attendances = this.state.attendances;
         attendances.push(attendanceObject);
         this.setState({

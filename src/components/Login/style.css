@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+    .col-lg-5 {
+        margin: 0 auto !important;
+    }
+}
+
+.input-group .form-control:not(:first-child) {
+    padding-left: 15px;
+}

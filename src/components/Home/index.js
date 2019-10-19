@@ -1,9 +1,10 @@
 import React from "react";
 
 import { withAuthorization } from "../Session";
-import Points from "../Points";
+import UserPoints from "../UserPoints";
 import ManageEventsPage from "../ManageEvents";
 import ViewerDashboard from "../ViewerDashboard";
+import EventManagement from "../EventManagement";
 import * as ROLES from "../../constants/roles";
 
 const HomePage = ({ authUser }) => {
@@ -14,14 +15,16 @@ const HomePage = ({ authUser }) => {
     return <AdminHomePage />;
   } else if (authUser.roles.hasOwnProperty(ROLES.VIEWER)) {
     return <ViewerHomePage />;
-  } else {
+  } else if (authUser.roles.hasOwnProperty(ROLES.STUDENT)) {
     return <StudentHomePage />;
+  } else {
+    return null;
   }
 };
 
-const StudentHomePage = () => <Points />;
+const StudentHomePage = () => <UserPoints />;
 
-const AdminHomePage = () => <ManageEventsPage />;
+const AdminHomePage = () => <EventManagement />;
 
 const ViewerHomePage = () => <ViewerDashboard />;
 

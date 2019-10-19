@@ -1,3 +1,4 @@
+import EventUtil from "./EventUtil";
 /*
     Used for infinite scrolling pagination. 
     if user is at the bottom of page,
@@ -27,8 +28,9 @@ export const convertQuerySnapshotToResults = querySnapshot => {
   return results;
 };
 
-const utils = {
+const Utils = {
   scrolledToBottomCallback,
-  convertQuerySnapshotToResults
+  convertQuerySnapshotToResults,
+  EventUtil
 };
-export default utils;
+export default Utils;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 import moment from "moment";
@@ -22,6 +23,7 @@ const useGetEvents = timeFrame => {
       }
     };
     fetchEvents();
+    // eslint-disable-next-line
   }, [timeFrame]);
   return { events, isLoading, error };
 };
@@ -37,6 +39,20 @@ const buildDateRangeCriteria = timeFrame => {
     endDate
   };
 };
+
+const getAllEvents = () =>
+  firebase.firestore
+    .collection("events")
+    .orderBy("date", "desc")
+    .get()
+    .then(querySnapshot => {
+      const events = [];
+      querySnapshot.forEach(doc => {
+        events.push({ uid: doc.id, ...doc.data() });
+      });
+      return events;
+    });
+
 const getEvents = dateCriteria =>
   firebase.firestore
     .collection("events")
@@ -52,7 +68,7 @@ const getEvents = dateCriteria =>
     });
 
 const getEventsPaginated = (lastRef, includePastEvents) => {
-  const today = moment().format("MM-DD-YYYY");
+  const today = moment(new Date()).format("MM-DD-YYYY");
   if (lastRef) {
     if (includePastEvents) {
       return firebase.firestore
@@ -135,6 +151,7 @@ export default {
   useGetEvents,
   getEvents,
   getEventsPaginated,
+  getAllEvents,
   getEvent,
   addEvent,
   editEvent,

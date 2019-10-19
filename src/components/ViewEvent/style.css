@@ -1,0 +1,32 @@
+.list-group-item {
+    border: none !important;
+    padding: 0.6rem 1rem;
+}
+
+.modal-title {
+    font-size: 2.2em !important;
+}
+
+.list-group {
+    font-size: 1.2em;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.list-item-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.list-item-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item-icon {
+    margin-top: 5px;
+    margin-right: 15px;
+}
