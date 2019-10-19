@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./theme/assets/vendor/nucleo/css/nucleo.css";
-import "./theme/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
-import "./theme/assets/scss/argon-dashboard-react.scss";
+// import "./theme/assets/vendor/nucleo/css/nucleo.css";
+// import "./theme/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
+// import "./theme/assets/scss/argon-dashboard-react.scss";
 
 import "./index.css";
 
