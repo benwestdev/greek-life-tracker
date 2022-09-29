@@ -15,7 +15,7 @@
     "react-scripts": "3.1.1",
     "react-social-login-buttons": "^3.0.0",
     "reactstrap": "^8.0.1",
-    "recharts": "^1.7.1",
+    "recharts": "^2.1.14",
     "recompose": "^0.30.0",
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
